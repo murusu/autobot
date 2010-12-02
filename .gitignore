@@ -1,0 +1,12 @@
+
+/autobot.depend
+/autobot.layout
+/bin/Debug/autobot.exe
+/bin/Debug/config.xml
+/config.xml
+/obj/Debug/autobot_main.o
+/obj/Debug/common/xml_class.o
+/obj/Debug/tinyxml/tinystr.o
+/obj/Debug/tinyxml/tinyxml.o
+/obj/Debug/tinyxml/tinyxmlerror.o
+/obj/Debug/tinyxml/tinyxmlparser.o

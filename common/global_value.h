@@ -1,0 +1,6 @@
+#ifndef GLOBAL_VALUE_H_INCLUDED
+#define GLOBAL_VALUE_H_INCLUDED
+
+#define CONFIG_XML_PATH "config.xml"
+
+#endif // GLOBAL_VALUE_H_INCLUDED

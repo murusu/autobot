@@ -1,21 +1,10 @@
 #include "xml_class.h"
 
-XmlBase::XmlBase(const char *filename)
+XmlBase::XmlBase()
 {
-    printf(filename);
-
-    m_xmldoc = new TiXmlDocument();
-
-    if(!m_xmldoc->LoadFile(filename))
-    {
-        TiXmlDeclaration *xmlhead = new TiXmlDeclaration("1.0", "utf-8","");
-        m_xmldoc->LinkEndChild( xmlhead );
-        if(!m_xmldoc->SaveFile(filename))
-        {
-            delete m_xmldoc;
-            m_xmldoc = NULL;
-        }
-    }
+    m_xmldoc    = NULL;
+    m_filename  = NULL;
+    m_rootname  = NULL;
 }
 
 XmlBase::~XmlBase()
@@ -25,14 +14,50 @@ XmlBase::~XmlBase()
         delete m_xmldoc;
         m_xmldoc = NULL;
     }
+
+    if(m_filename)
+    {
+        delete m_filename;
+        m_filename = NULL;
+    }
+
+    if(m_rootname)
+    {
+        delete m_rootname;
+        m_rootname = NULL;
+    }
+}
+
+bool XmlBase::init(const char *filename, const char *rootname)
+{
+    m_filename  = new TiXmlString(filename);
+    m_rootname  = new TiXmlString(rootname);
+    m_xmldoc    = new TiXmlDocument();
+
+    if(!m_filename || !m_rootname || !m_xmldoc) return false;
+
+    if(!m_xmldoc->LoadFile(m_filename->c_str()))
+    {
+        TiXmlDeclaration *xmlhead = new TiXmlDeclaration("1.0", "utf-8","");
+        m_xmldoc->LinkEndChild( xmlhead );
+        if(!m_xmldoc->SaveFile(m_filename->c_str())) return false;
+    }
+
+    return true;
 }
 
 bool XmlBase::setData(const char *key, const char *data)
 {
-    if(!m_xmldoc)
-    {
-        return false;
-    }
+/*
+    if(!m_filename || !m_rootname || !m_xmldoc) return false;
+
+    TiXmlString *pElementKey    = NULL;
+    TiXmlString *pElementData   = NULL;
+
+    pElementKey    = new TiXmlString(key);
+    pElementData   = new TiXmlString(data);
+
+    if(!pElementKey || !pElementData) return false;
 
     TiXmlElement *pElementParents = NULL;
     TiXmlElement *pElementChild   = NULL;
@@ -40,7 +65,7 @@ bool XmlBase::setData(const char *key, const char *data)
 
     if(!pElementParents)
     {
-        pElementParents = new TiXmlElement("configration");
+        pElementParents = new TiXmlElement(m_rootname->c_str());
         m_xmldoc->LinkEndChild(pElementParents);
     }
 
@@ -115,6 +140,9 @@ bool XmlBase::setData(const char *key, const char *data)
     {
         return false;
     }
+*/
+
+    return true;
 }
 
 bool XmlBase::getData(const char *key, char *data)

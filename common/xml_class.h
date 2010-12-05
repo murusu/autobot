@@ -9,13 +9,18 @@
 class XmlBase
 {
     private:
-        TiXmlDocument *m_xmldoc;
+        TiXmlDocument   *m_xmldoc;
+        TiXmlString     *m_filename;
+        TiXmlString     *m_rootname;
+
         bool setData(const char *key, const char *data);
         bool getData(const char *key, char *data);
 
     public:
-        XmlBase(const char *filename);
+        XmlBase();
         ~XmlBase();
+
+        bool init(const char *filename, const char *rootname = "datas");
 };
 
 #endif // XML_CLASS_H_INCLUDED

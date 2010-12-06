@@ -13,14 +13,28 @@ class XmlBase
         TiXmlString     *m_filename;
         TiXmlString     *m_rootname;
 
-        bool setData(const char *key, const char *data);
-        bool getData(const char *key, char *data);
+        //bool setData(const char *key, const char *data);
+        //bool getData(const char *key, char *data);
+
+
 
     public:
         XmlBase();
         ~XmlBase();
 
         bool init(const char *filename, const char *rootname = "datas");
+
+        //int  getElementNum(const char *key);
+
+        TiXmlElement * getElement(const char *pKeyName, size_t iIndex = 0);
+
+        const char * getElementText(TiXmlElement *pElement);
+        const char * getElementAttribute(TiXmlElement *pElement, const char *pAttributeName);
+
+        bool setElementText(TiXmlElement *pElement, const char *pData);
+        bool setElementAttribute(TiXmlElement *pElement, const char *pAttributeName, const char *pData);
+
+        bool saveXmlFile();
 };
 
 #endif // XML_CLASS_H_INCLUDED

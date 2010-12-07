@@ -14,10 +14,11 @@ int main()
     {
         printf("ok");
 
-        //tesmp->setElementText(tesmp->getElement("test/temp", 1), "testhyyt");
+        tesmp->setElementText(tesmp->getElement("oktest/temp", 2, true), "this is a little test");
         //tesmp->setElementAttribute(tesmp->getElement("ookd/meaasg", 3), "name", "9898");
-        //tesmp->saveXmlFile();
-        printf(tesmp->getElementAttribute(tesmp->getElement("ookd/meaasg", 3), "name"));
+        tesmp->saveXmlFile();
+        //printf(tesmp->getElementAttribute(tesmp->getElement("ookd/meaasg", 3), "name"));
+        //printf("number of element is %d", tesmp->getElementNum("test/temp"));
     }
     else
     {

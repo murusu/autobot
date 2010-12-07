@@ -46,111 +46,6 @@ bool XmlBase::init(const char *filename, const char *rootname)
     return true;
 }
 /*
-bool XmlBase::setData(const char *key, const char *data)
-{
-
-    if(!m_filename || !m_rootname || !m_xmldoc) return false;
-
-    TiXmlString *pElementKey    = NULL;
-    TiXmlString *pElementData   = NULL;
-
-    pElementKey    = new TiXmlString(key);
-    pElementData   = new TiXmlString(data);
-
-    if(!pElementKey || !pElementData) return false;
-
-    TiXmlElement *pElementParents = NULL;
-    TiXmlElement *pElementChild   = NULL;
-    pElementParents = m_xmldoc->RootElement();
-
-    if(!pElementParents)
-    {
-        pElementParents = new TiXmlElement(m_rootname->c_str());
-        m_xmldoc->LinkEndChild(pElementParents);
-    }
-
-    char *cNodeKey = (char *)malloc(strlen(key) + 1);
-    char *cInputString = (char *)key;
-
-    memset(cNodeKey, '\0', sizeof(cNodeKey));
-
-    char *cPosition = strchr(cInputString, '/');
-
-    strncpy(cNodeKey, cInputString, cPosition - cInputString);
-
-    cNodeKey[cPosition - cInputString] = '\0';
-
-    while(cPosition)
-    {
-        pElementChild = pElementParents->FirstChildElement(cNodeKey);
-
-        if(!pElementChild)
-        {
-            pElementChild = new TiXmlElement(cNodeKey);
-            pElementParents->LinkEndChild(pElementChild);
-        }
-
-        pElementParents = pElementChild;
-
-        memset(cNodeKey, 0, sizeof(cNodeKey));
-
-        if(cPosition)
-        {
-            cInputString = cPosition + 1;
-            cPosition = strchr(cInputString, '/');
-
-            if(cPosition)
-            {
-                strncpy(cNodeKey, cInputString, cPosition - cInputString);
-                cNodeKey[cPosition - cInputString] = '\0';
-            }
-            else
-            {
-                strcpy(cNodeKey, cInputString);
-                pElementChild = pElementParents->FirstChildElement(cNodeKey);
-
-                if(!pElementChild)
-                {
-                    pElementChild = new TiXmlElement(cNodeKey);
-                    pElementParents->LinkEndChild(pElementChild);
-
-                }
-            }
-        }
-    }
-
-    pElementParents = pElementChild;
-
-    TiXmlText* pText = NULL;
-    pText = new TiXmlText(data);
-    if(pElementParents->FirstChild())
-    {
-        pElementParents->ReplaceChild(pElementParents->FirstChild(), *pText);
-    }
-    else
-    {
-        pElementParents->LinkEndChild(pText);
-    }
-
-    if(m_xmldoc->SaveFile(CONFIG_XML_PATH))
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-
-
-    return true;
-}
-
-bool XmlBase::getData(const char *key, char *data)
-{
-    return true;
-}
-*/
-/*
 int XmlBase::getElementNum(const char *key)
 {
     int pElementNum = 0;
@@ -173,106 +68,71 @@ TiXmlElement * XmlBase::getElement(const char *pKeyName, size_t iIndex)
 {
     if(!m_rootname || !m_xmldoc) return NULL;
 
-    TiXmlElement *pElementParents = NULL;
+    TiXmlElement *pElementNode = NULL;
     TiXmlElement *pElementChild   = NULL;
+    TiXmlElement *pElementSibling = NULL;
 
-    if(!(pElementParents = m_xmldoc->RootElement()))
+    if(!(pElementNode = m_xmldoc->RootElement()))
     {
         pElementChild = new TiXmlElement(m_rootname->c_str());
         m_xmldoc->LinkEndChild(pElementChild);
-        pElementParents = pElementChild;
+        pElementNode = pElementChild;
     }
 
-    const char *pNodePosition;
+    const char *pNodePositionStart = NULL;
+    const char *pNodePositionEnd = NULL;
+    char *pNodeKey = (char *)malloc(sizeof(pKeyName));
 
-    /*
-    char *cNodeKey = (char *)malloc(strlen(pKeyName) + 1);
-    const char *cInputString = pKeyName;
+    pNodePositionStart = pKeyName;
+    pNodePositionEnd = strchr(pKeyName, '/');
 
-    memset(cNodeKey, '\0', sizeof(cNodeKey));
-
-    char *cPosition = strchr(cInputString, '/');
-
-    strncpy(cNodeKey, cInputString, cPosition - cInputString);
-
-    cNodeKey[cPosition - cInputString] = '\0';
-
-    while(cPosition)
+    while(pNodePositionEnd)
     {
-        pElementChild = pElementParents->FirstChildElement(cNodeKey);
+        memset(pNodeKey, '\0', sizeof(pKeyName));
+
+        strncpy(pNodeKey, pNodePositionStart, pNodePositionEnd - pNodePositionStart);
+        pNodeKey[pNodePositionEnd - pNodePositionStart] = '\0';
+        pNodePositionStart = pNodePositionEnd + 1;
+
+        pElementChild = pElementNode->FirstChildElement(pNodeKey);
 
         if(!pElementChild)
         {
-            pElementChild = new TiXmlElement(cNodeKey);
-            pElementParents->LinkEndChild(pElementChild);
+            pElementChild = new TiXmlElement(pNodeKey);
+            pElementNode->LinkEndChild(pElementChild);
         }
 
-        pElementParents = pElementChild;
+        pElementNode = pElementChild;
 
-        memset(cNodeKey, 0, sizeof(cNodeKey));
+        pNodePositionEnd = strchr(pNodePositionStart, '/');
+    }
 
-        cInputString = cPosition + 1;
-        cPosition = strchr(cInputString, '/');
+    pElementChild = pElementNode->FirstChildElement(pNodePositionStart);
 
-        if(cPosition)
+    if(!pElementChild)
+    {
+        pElementChild = new TiXmlElement(pNodePositionStart);
+        pElementNode->LinkEndChild(pElementChild);
+    }
+
+    pElementNode = pElementChild;
+
+    while(iIndex >0)
+    {
+        pElementSibling = pElementNode->NextSiblingElement(pNodePositionStart);
+
+        if(!pElementSibling)
         {
-            strncpy(cNodeKey, cInputString, cPosition - cInputString);
-            cNodeKey[cPosition - cInputString] = '\0';
-        }
-        else
-        {
-            strcpy(cNodeKey, cInputString);
-            pElementChild = pElementParents->FirstChildElement(cNodeKey);
-
-            if(!pElementChild)
-            {
-                pElementChild = new TiXmlElement(cNodeKey);
-                pElementParents->LinkEndChild(pElementChild);
-            }
-        }
-    }
-
-    pElementParents = pElementChild;
-    */
-/*
-    while(iIndex > 0)
-    {
-        pElementChild = pElementParents->NextSiblingElement(cNodeKey);
-
-        if(!pElementChild)
-        {
-            pElementChild = new TiXmlElement(cNodeKey);
-            pElementParents->LinkEndChild(pElementChild);
+            pElementSibling = new TiXmlElement(pNodePositionStart);
+            pElementNode->Parent()->LinkEndChild(pElementSibling);
         }
 
-        pElementParents = pElementChild;
-    }
-*/
-    return pElementParents;
-    /*
-
-    pElementParents = pElementChild;
-
-    TiXmlText* pText = NULL;
-    pText = new TiXmlText(buf);
-    if(pElementParents->FirstChild())
-    {
-        pElementParents->ReplaceChild(pElementParents->FirstChild(), *pText);
-    }
-    else
-    {
-        pElementParents->LinkEndChild(pText);
+        pElementNode = pElementSibling;
+        iIndex--;
     }
 
-    if(xmlconfigfile->SaveFile(cFileName))
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-    */
+    free(pNodeKey);
+    return pElementNode;
 }
 
 const char * XmlBase::getElementText(TiXmlElement *pElement)

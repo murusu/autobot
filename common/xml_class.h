@@ -6,12 +6,12 @@
 
 class XmlBase
 {
-    private:
+    protected:
         TiXmlDocument   *m_xmldoc;
         TiXmlString     *m_filename;
         TiXmlString     *m_rootname;
 
-    public:
+    protected:
         size_t  getElementNum(const char *pKeyName);
         TiXmlElement * getElement(const char *pKeyName, size_t iIndex = 0, bool bAutoGenerate = false);
 
@@ -21,13 +21,11 @@ class XmlBase
         bool setElementText(TiXmlElement *pElement, const char *pData);
         bool setElementAttribute(TiXmlElement *pElement, const char *pAttributeName, const char *pData);
 
+        bool init(const char *filename, const char *rootname = "datas");
         bool saveXmlFile();
 
     public:
         XmlBase();
         ~XmlBase();
-
-        bool init(const char *filename, const char *rootname = "datas");
 };
-
 #endif // XML_CLASS_H_INCLUDED

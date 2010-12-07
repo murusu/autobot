@@ -10,3 +10,6 @@
 /obj/Debug/tinyxml/tinyxml.o
 /obj/Debug/tinyxml/tinyxmlerror.o
 /obj/Debug/tinyxml/tinyxmlparser.o
+/obj/Debug/xmldata/xml_config.o
+/obj/Debug/xmldata/xml_log.o
+/obj/Debug/xmldata/xml_task.o

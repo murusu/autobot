@@ -94,6 +94,12 @@
 		<Unit filename="tinyxml\tinyxml.h" />
 		<Unit filename="tinyxml\tinyxmlerror.cpp" />
 		<Unit filename="tinyxml\tinyxmlparser.cpp" />
+		<Unit filename="xmldata\xml_config.cpp" />
+		<Unit filename="xmldata\xml_config.h" />
+		<Unit filename="xmldata\xml_log.cpp" />
+		<Unit filename="xmldata\xml_log.h" />
+		<Unit filename="xmldata\xml_task.cpp" />
+		<Unit filename="xmldata\xml_task.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

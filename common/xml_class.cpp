@@ -210,3 +210,4 @@ bool XmlBase::saveXmlFile()
 
     return m_xmldoc->SaveFile(m_filename->c_str());
 }
+

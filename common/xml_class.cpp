@@ -53,7 +53,8 @@ size_t  XmlBase::getElementNum(const char *pKeyName)
     TiXmlElement *pElementNode      = NULL;
     size_t iElementNum              = 0;
 
-    pNodePositionStart = strrchr(pKeyName, '/') + 1;
+    pNodePositionStart = strrchr(pKeyName, '/');
+    if(!pNodePositionStart) pNodePositionStart = pKeyName;
 
     pElementNode = getElement(pKeyName);
 
@@ -61,7 +62,7 @@ size_t  XmlBase::getElementNum(const char *pKeyName)
     {
         iElementNum++;
 
-        pElementNode = pElementNode->NextSiblingElement(pNodePositionStart);
+        pElementNode = pElementNode->NextSiblingElement(pNodePositionStart + 1);
     }
 
     return iElementNum;

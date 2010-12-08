@@ -22,7 +22,11 @@ int main()
 
     taskfile->setTaskId("jjhg65D");
 
-
+    LogXml* logfile;
+    logfile = new LogXml();
+    if(!logfile->initLogXml("log_7e6gj82.xml")) printf("fail!");
+    logfile->addLog("2010-12-08 17:25:21", "this is a log test");
+    logfile->addLog("2010-12-12 08:54:05", "test! this is a test");
 
     //mkdir("tempdir");
     //system("mkdir -p parent/child/grandson");

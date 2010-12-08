@@ -18,6 +18,19 @@ bool LogXml::initLogXml(const char * pfilename)
 
     TiXmlString pfullname = TiXmlString(LOG_XML_PATH) + TiXmlString("//") + TiXmlString(pfilename);
 
-    if(!init(pfullname.c_str(), "logs")) return false;
+    if(!init(pfullname.c_str(), LOG_XML_ROOT_NAME)) return false;
     return true;
+}
+
+size_t LogXml::getLogNum()
+{
+    return this->getElementNum(LOG_XML_ITEM_NAME);
+}
+
+void LogXml::addLog(const char* plogdate, const char* plogcontent)
+{
+    TiXmlElement * pelement = this->getElement(LOG_XML_ITEM_NAME, this->getLogNum(), true);
+    size_t bflag1 = this->setElementAttribute(pelement, LOG_XML_ITEM_DATE, plogdate);
+    size_t bflag2 = this->setElementAttribute(pelement, LOG_XML_ITEM_CONTENT, plogcontent);
+    this->saveXmlFile();
 }

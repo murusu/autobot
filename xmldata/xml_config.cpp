@@ -10,7 +10,7 @@ ConfigXml::~ConfigXml()
 
 bool ConfigXml::initConfigXml()
 {
-    if(!init(CONFIG_XML_PATH, CONFIG_XML_ROOT_NAME)) return false;
+    if(!init(CONFIG_XML_NAME, CONFIG_XML_ROOT_NAME)) return false;
 
     if(!getElement("version")) createDefaultConfig();
     return true;

@@ -1,5 +1,7 @@
 #include "autobot_main.h"
 
+//#include <dir.h>
+
 int main()
 {
 
@@ -16,7 +18,14 @@ int main()
 
     TaskXml* taskfile;
     taskfile = new TaskXml();
-    taskfile->initTaskXml("task_7e6gj82.xml");
+    if(!taskfile->initTaskXml("task_7e6gj82.xml")) printf("fail!");
+
+    taskfile->setTaskId("jjhg65D");
+
+
+
+    //mkdir("tempdir");
+    //system("mkdir -p parent/child/grandson");
 
     //printf("software version is %s", tempconfig->getVersion());
     //if(tesmp->init("config.xml", "configration"))

@@ -11,6 +11,7 @@ class TaskXml : public XmlBase
         ~TaskXml();
 
         bool initTaskXml(const char * pfilename);
+        void setTaskId(const char * pid);
 };
 
 #endif // XML_TASK_H_INCLUDED

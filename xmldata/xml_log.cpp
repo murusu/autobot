@@ -30,7 +30,7 @@ size_t LogXml::getLogNum()
 void LogXml::addLog(const char* plogdate, const char* plogcontent)
 {
     TiXmlElement * pelement = this->getElement(LOG_XML_ITEM_NAME, this->getLogNum(), true);
-    size_t bflag1 = this->setElementAttribute(pelement, LOG_XML_ITEM_DATE, plogdate);
-    size_t bflag2 = this->setElementAttribute(pelement, LOG_XML_ITEM_CONTENT, plogcontent);
+    this->setElementAttribute(pelement, LOG_XML_ITEM_DATE, plogdate);
+    this->setElementAttribute(pelement, LOG_XML_ITEM_CONTENT, plogcontent);
     this->saveXmlFile();
 }

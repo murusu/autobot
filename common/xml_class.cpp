@@ -54,15 +54,22 @@ size_t  XmlBase::getElementNum(const char *pKeyName)
     size_t iElementNum              = 0;
 
     pNodePositionStart = strrchr(pKeyName, '/');
-    if(!pNodePositionStart) pNodePositionStart = pKeyName;
+    if(!pNodePositionStart)
+    {
+        pNodePositionStart = pKeyName;
+    }
+    else
+    {
+        pNodePositionStart++;
+    }
 
     pElementNode = getElement(pKeyName);
 
     while(pElementNode)
     {
-        iElementNum++;
+         iElementNum++;
 
-        pElementNode = pElementNode->NextSiblingElement(pNodePositionStart + 1);
+        pElementNode = pElementNode->NextSiblingElement(pNodePositionStart);
     }
 
     return iElementNum;

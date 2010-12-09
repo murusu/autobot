@@ -12,5 +12,7 @@
 #define LOG_XML_ITEM_NAME "log"
 #define LOG_XML_ITEM_DATE "date"
 #define LOG_XML_ITEM_CONTENT "content"
+#define TASK_XML_ACTION "actions/action"
+#define TASK_XML_ACTION_CONTENT "content"
 
 #endif // GLOBAL_VALUE_H_INCLUDED

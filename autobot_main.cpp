@@ -18,16 +18,23 @@ int main()
 
     TaskXml* taskfile;
     taskfile = new TaskXml();
-    if(!taskfile->initTaskXml("task_7e6gj82.xml")) printf("fail!");
+    if(!taskfile->initTaskXml("task_rooei3.xml")) printf("fail!");
 
-    taskfile->setTaskId("jjhg65D");
+    for(size_t index = 0; index < 5; index++)
+    {
+        TiXmlString data = TiXmlString("This is action #");
+        taskfile->addAction(data.c_str());
+    }
 
+    //taskfile->deleteAciton(2);
+
+/*
     LogXml* logfile;
     logfile = new LogXml();
     if(!logfile->initLogXml("log_7e6gj82.xml")) printf("fail!");
     logfile->addLog("2010-12-08 17:25:21", "this is a log test");
     logfile->addLog("2010-12-12 08:54:05", "test! this is a test");
-
+*/
     //mkdir("tempdir");
     //system("mkdir -p parent/child/grandson");
 

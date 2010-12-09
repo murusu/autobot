@@ -22,14 +22,9 @@ bool LogXml::initLogXml(const char * pfilename)
     return true;
 }
 
-size_t LogXml::getLogNum()
-{
-    return this->getElementNum(LOG_XML_ITEM_NAME);
-}
-
 void LogXml::addLog(const char* plogdate, const char* plogcontent)
 {
-    TiXmlElement * pelement = this->getElement(LOG_XML_ITEM_NAME, this->getLogNum(), true);
+    TiXmlElement * pelement = this->getElement(LOG_XML_ITEM_NAME, this->getElementNum(LOG_XML_ITEM_NAME), true);
     this->setElementAttribute(pelement, LOG_XML_ITEM_DATE, plogdate);
     this->setElementAttribute(pelement, LOG_XML_ITEM_CONTENT, plogcontent);
     this->saveXmlFile();

@@ -11,7 +11,6 @@ class LogXml : public XmlBase
         ~LogXml();
 
         bool initLogXml(const char* pfilename);
-        size_t getLogNum();
         void addLog(const char* plogdate, const char* plogcontent);
 };
 

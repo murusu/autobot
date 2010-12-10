@@ -11,10 +11,15 @@ class TaskXml : public XmlBase
         ~TaskXml();
 
         bool initTaskXml(const char * pfilename);
-        void setTaskId(const char * pid);
+        //void setTaskId(const char * pid);
 
         void addAction(const char * pcontent);
         void deleteAciton(size_t index);
+        void modifyAction(size_t index, const char * pcontent);
+
+        const char* getTaskName();
+        time_t getLastRunDate();
+        void updateLastRunDate(time_t newdate);
 };
 
 #endif // XML_TASK_H_INCLUDED

@@ -15,7 +15,7 @@ int main()
     //ConfigXml* tempconfig;
     //tempconfig = new ConfigXml();
     //tempconfig->initConfigXml();
-
+/*
     TaskXml* taskfile;
     taskfile = new TaskXml();
     if(!taskfile->initTaskXml("task_rooei3.xml")) printf("fail!");
@@ -30,6 +30,7 @@ int main()
     }
 
     taskfile->deleteAciton(2);
+    */
 
 /*
     LogXml* logfile;
@@ -57,4 +58,11 @@ int main()
         //printf("fail");
     //}
     //testconfig.setData("test", "this is test");
+
+    //BotTask* pbottask;
+    //pbottask = new BotTask();
+    //pbottask->initBotTask("deggfdg");
+    TaskManager* ptaskManager;
+    ptaskManager = new TaskManager();
+    ptaskManager->initTaskManager();
 }

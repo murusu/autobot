@@ -15,4 +15,7 @@
 #define TASK_XML_ACTION "actions/action"
 #define TASK_XML_ACTION_CONTENT "content"
 
+#define TASK_XML_PREFIX_NUM 5
+#define TASK_XML_NAME_NUM 5
+
 #endif // GLOBAL_VALUE_H_INCLUDED

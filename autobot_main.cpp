@@ -22,11 +22,14 @@ int main()
 
     for(size_t index = 0; index < 5; index++)
     {
-        TiXmlString data = TiXmlString("This is action #");
+        char ctime[2];
+        sprintf(ctime, "%d", index);
+
+        TiXmlString data = TiXmlString("This is action #") + TiXmlString(ctime);
         taskfile->addAction(data.c_str());
     }
 
-    //taskfile->deleteAciton(2);
+    taskfile->deleteAciton(2);
 
 /*
     LogXml* logfile;

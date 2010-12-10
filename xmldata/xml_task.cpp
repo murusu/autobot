@@ -39,4 +39,5 @@ void TaskXml::deleteAciton(size_t index)
 {
     TiXmlElement * pelement = this->getElement(TASK_XML_ACTION, index, true);
     pelement->Parent()->RemoveChild(pelement);
+    this->saveXmlFile();
 }

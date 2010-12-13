@@ -4,6 +4,7 @@
 #include <wx/dir.h>
 #include <wx/dynarray.h>
 #include <wx/arrimpl.cpp>
+#include <wx/filefn.h>
 #include "bot_task.h"
 
 class BotTask;

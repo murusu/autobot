@@ -88,6 +88,10 @@
 		<Unit filename="common\global_value.h" />
 		<Unit filename="common\xml_class.cpp" />
 		<Unit filename="common\xml_class.h" />
+		<Unit filename="core\bot_task.cpp" />
+		<Unit filename="core\bot_task.h" />
+		<Unit filename="core\task_manager.cpp" />
+		<Unit filename="core\task_manager.h" />
 		<Unit filename="tinyxml\tinystr.cpp" />
 		<Unit filename="tinyxml\tinystr.h" />
 		<Unit filename="tinyxml\tinyxml.cpp" />

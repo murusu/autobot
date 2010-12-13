@@ -20,17 +20,19 @@ int main()
     taskfile = new TaskXml();
     if(!taskfile->initTaskXml("task_rooei3.xml")) printf("fail!");
 
-    for(size_t index = 0; index < 5; index++)
+    for(size_t index = 0; index < 1000; index++)
     {
-        char ctime[2];
+        char ctime[6];
         sprintf(ctime, "%d", index);
 
         TiXmlString data = TiXmlString("This is action #") + TiXmlString(ctime);
         taskfile->addAction(data.c_str());
     }
 
-    taskfile->deleteAciton(2);
-    */
+    taskfile->commitData();
+*/
+    //taskfile->deleteAciton(2);
+
 
 /*
     LogXml* logfile;

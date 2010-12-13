@@ -27,6 +27,16 @@ bool TaskManager::initTaskManager()
 {
     m_taskarray = new TaskArray();
 
+    if(!wxDirExists(wxT(TASK_XML_PATH)))
+    {
+        if(!wxMkdir(wxT(TASK_XML_PATH))) return false;
+    }
+
+    if(!wxDirExists(wxT(LOG_XML_PATH)))
+    {
+        if(!wxMkdir(wxT(LOG_XML_PATH))) return false;
+    }
+
     wxDir dir(wxT(TASK_XML_PATH));
     if(!dir.IsOpened())  return false;
 

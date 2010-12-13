@@ -16,6 +16,7 @@ class TaskXml : public XmlBase
         void addAction(const char * pcontent);
         void deleteAciton(size_t index);
         void modifyAction(size_t index, const char * pcontent);
+        void commitData();
 
         const char* getTaskName();
         time_t getLastRunDate();

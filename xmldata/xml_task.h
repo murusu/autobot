@@ -1,6 +1,8 @@
 #ifndef XML_TASK_H_INCLUDED
 #define XML_TASK_H_INCLUDED
 
+#include <wx/filefn.h>
+#include <wx/datetime.h>
 #include "../common/global_value.h"
 #include "../common/xml_class.h"
 
@@ -19,8 +21,11 @@ class TaskXml : public XmlBase
         void commitData();
 
         const char* getTaskName();
-        time_t getLastRunDate();
-        void updateLastRunDate(time_t newdate);
+        time_t      getLastRunDate();
+        const char* getTaskTimerType();
+        const char* getTaskTimerTime();
+
+        void updateLastRunDate();
 };
 
 #endif // XML_TASK_H_INCLUDED

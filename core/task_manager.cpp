@@ -46,7 +46,7 @@ bool TaskManager::initTaskManager()
     while (cont)
     {
         BotTask *ptaskitem = new BotTask();
-        ptaskitem->initBotTask(filename.Mid(TASK_XML_PREFIX_NUM, TASK_XML_NAME_NUM).mb_str(wxConvUTF8));
+        ptaskitem->initBotTask(filename.Mid(TASK_XML_PREFIX_LEN, TASK_XML_NAME_LEN).mb_str(wxConvUTF8));
         m_taskarray->Add(ptaskitem);
 
         cont = dir.GetNext(&filename);

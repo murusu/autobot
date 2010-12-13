@@ -4,6 +4,7 @@ BotTask::BotTask()
 {
     m_logxml = NULL;
     m_taskxml = NULL;
+    m_timer = NULL;
 }
 
 BotTask::~BotTask()
@@ -19,6 +20,12 @@ BotTask::~BotTask()
         delete m_taskxml;
         m_taskxml = NULL;
     }
+
+    if(m_timer)
+    {
+        delete m_timer;
+        m_timer = NULL;
+    }
 }
 
 bool BotTask::initBotTask(const char *pfilename)
@@ -31,7 +38,15 @@ bool BotTask::initBotTask(const char *pfilename)
     TiXmlString plogname = TiXmlString("log_") + TiXmlString(pfilename) + TiXmlString(".xml");
     m_logxml->initLogXml(plogname.c_str());
 
+    m_timer = new wxTimer(this);
+
+    this->updateTimer();
+
     return true;
+}
+
+void BotTask::updateTimer()
+{
 }
 
 const char* BotTask::getTaskName()

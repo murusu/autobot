@@ -1,4 +1,4 @@
-#include <wx/filefn.h>
+
 #include "xml_task.h"
 
 TaskXml::TaskXml():XmlBase()
@@ -45,19 +45,38 @@ void TaskXml::modifyAction(size_t index, const char * pcontent)
 
 const char* TaskXml::getTaskName()
 {
-    return "test";
+    TiXmlElement * pelement = this->getElement(TASK_XML_NAME, 0, true);
+    return this->getElementText(pelement);
 }
 
 time_t TaskXml::getLastRunDate()
 {
-    return 5122012;
+    TiXmlElement * pelement = this->getElement(TASK_XML_LAST_RUN_DATE, 0, true);
+    return atoi(this->getElementText(pelement));
 }
 
-void TaskXml::updateLastRunDate(time_t newdate)
+void TaskXml::updateLastRunDate()
 {
+    TiXmlElement * pelement = this->getElement(TASK_XML_LAST_RUN_DATE, 0, true);
+    char buffer[16];
+    sprintf(buffer,"%l", (long)wxDateTime::GetTimeNow());
+    this->setElementText(pelement, buffer);
 }
 
 void TaskXml::commitData()
 {
     this->saveXmlFile();
 }
+
+const char* TaskXml::getTaskTimerType()
+{
+    TiXmlElement * pelement = this->getElement(TASK_XML_TIMER, 0, true);
+    return this->getElementAttribute(pelement, TASK_XML_TIMER_TYPE);
+}
+
+const char* TaskXml::getTaskTimerTime()
+{
+    TiXmlElement * pelement = this->getElement(TASK_XML_TIMER, 0, true);
+    return this->getElementAttribute(pelement, TASK_XML_TIMER_TIME);
+}
+

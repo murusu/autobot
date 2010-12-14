@@ -22,11 +22,18 @@ class BotTask : public wxEvtHandler
         bool initBotTask(const char *pfilename);
         void updateTimer();
 
+        void commitData();
+
         const char* getTaskName();
         size_t getTaskStatus();
         time_t getLastRunDate();
+        const char* getTaskTimerType();
+        const char* getTaskTimerTime();
 
-
+        void setTaskName(const char* pname);
+        void updateLastRunDate();
+        void setTaskTimerType(const char* ptype);
+        void setTaskTimerTime(const char* ptime);
 };
 
 #endif // BOT_TASK_H_INCLUDED

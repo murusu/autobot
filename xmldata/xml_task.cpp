@@ -59,7 +59,7 @@ void TaskXml::updateLastRunDate()
 {
     TiXmlElement * pelement = this->getElement(TASK_XML_LAST_RUN_DATE, 0, true);
     char buffer[16];
-    sprintf(buffer,"%l", (long)wxDateTime::GetTimeNow());
+    sprintf(buffer,"%ld", wxDateTime::GetTimeNow());
     this->setElementText(pelement, buffer);
 }
 
@@ -80,3 +80,21 @@ const char* TaskXml::getTaskTimerTime()
     return this->getElementAttribute(pelement, TASK_XML_TIMER_TIME);
 }
 
+
+void TaskXml::setTaskName(const char* pname)
+{
+    TiXmlElement * pelement = this->getElement(TASK_XML_NAME, 0, true);
+    this->setElementText(pelement, pname);
+}
+
+void TaskXml::setTaskTimerType(const char* ptype)
+{
+    TiXmlElement * pelement = this->getElement(TASK_XML_TIMER, 0, true);
+    this->setElementAttribute(pelement, TASK_XML_TIMER_TYPE, ptype);
+}
+
+void TaskXml::setTaskTimerTime(const char* ptime)
+{
+    TiXmlElement * pelement = this->getElement(TASK_XML_TIMER, 0, true);
+    this->setElementAttribute(pelement, TASK_XML_TIMER_TIME, ptime);
+}

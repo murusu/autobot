@@ -45,8 +45,26 @@ bool BotTask::initBotTask(const char *pfilename)
     return true;
 }
 
+void BotTask::commitData()
+{
+    m_taskxml->commitData();
+}
+
 void BotTask::updateTimer()
 {
+    wxString timmer_type(m_taskxml->getTaskTimerType(), wxConvUTF8);
+
+    switch(wxAtoi(timmer_type))
+    {
+        case TIMMER_INTERVAL:
+            break;
+
+        case TIMMER_SPECIFY:
+            break;
+
+        case TIMMER_DAILY_INTERVAL:
+            break;
+    }
 }
 
 const char* BotTask::getTaskName()
@@ -62,4 +80,34 @@ size_t BotTask::getTaskStatus()
 time_t BotTask::getLastRunDate()
 {
     return m_taskxml->getLastRunDate();
+}
+
+const char* BotTask::getTaskTimerType()
+{
+    return m_taskxml->getTaskTimerType();
+}
+
+const char* BotTask::getTaskTimerTime()
+{
+    return m_taskxml->getTaskTimerTime();
+}
+
+void BotTask::setTaskName(const char* pname)
+{
+    m_taskxml->setTaskName(pname);
+}
+
+void BotTask::updateLastRunDate()
+{
+    m_taskxml->updateLastRunDate();
+}
+
+void BotTask::setTaskTimerType(const char* ptype)
+{
+    m_taskxml->setTaskTimerType(ptype);
+}
+
+void BotTask::setTaskTimerTime(const char* ptime)
+{
+    m_taskxml->setTaskTimerTime(ptime);
 }

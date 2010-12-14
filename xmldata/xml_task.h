@@ -25,7 +25,10 @@ class TaskXml : public XmlBase
         const char* getTaskTimerType();
         const char* getTaskTimerTime();
 
+        void setTaskName(const char* pname);
         void updateLastRunDate();
+        void setTaskTimerType(const char* ptype);
+        void setTaskTimerTime(const char* ptime);
 };
 
 #endif // XML_TASK_H_INCLUDED

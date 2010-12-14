@@ -25,4 +25,11 @@
 #define TASK_XML_PREFIX_LEN                 5
 #define TASK_XML_NAME_LEN                   5
 
+#define TIMMER_INTERVAL                     1
+#define TIMMER_SPECIFY                      2
+#define TIMMER_DAILY_INTERVAL               3
+#define TIMMER_WEEKLY_INTERVAL              4
+#define TIMMER_MONTHLY_INTERVAL             5
+#define TIMMER_YEARLY_INTERVAL              6
+
 #endif // GLOBAL_VALUE_H_INCLUDED

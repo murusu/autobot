@@ -6,6 +6,7 @@
 #include "../common/global_value.h"
 #include "../xmldata/xml_log.h"
 #include "../xmldata/xml_task.h"
+#include "task_event.h"
 
 class BotTask : public wxEvtHandler
 {
@@ -14,6 +15,9 @@ class BotTask : public wxEvtHandler
         LogXml*  m_logxml;
         wxTimer* m_timer;
         size_t   m_taskstatus;
+
+    protected:
+        void OnTimer(wxTimerEvent& event);
 
     public:
         BotTask();

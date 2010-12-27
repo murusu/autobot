@@ -64,13 +64,17 @@ int main()
     TaskManager* ptaskManager;
     ptaskManager = new TaskManager();
     ptaskManager->initTaskManager();
-
+    while(true)
+    {
+    }
+/*
     BotTask* pbottask;
     pbottask = new BotTask();
     pbottask->initBotTask("11223");
     pbottask->setTaskName("test task");
     pbottask->setTaskTimerType("INTERVAL");
-    pbottask->setTaskTimerTime("231823");
+    pbottask->setTaskTimerTime("15");
     pbottask->updateLastRunDate();
     pbottask->commitData();
+*/
 }

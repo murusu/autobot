@@ -1,1 +1,8 @@
-﻿just a little test
+Task Type:
+TIMMER_SPECIFY 		------ run the task once at <%time%>
+TIMMER_INTERVAL  		------ run the task every <%time%> second
+TIMMER_DAILY_INTERVAL	------ run the task per day at <%parameter%> times
+TIMMER_WEEKLY_INTERVAL	------ run the task per week at <%parameter%> times
+TIMMER_MONTHLY_INTERVAL	------ run the task per month at <%parameter%> times
+TIMMER_YEARLY_INTERVAL	------ run the task per year at <%parameter%> times
+ 

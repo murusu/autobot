@@ -1,5 +1,10 @@
 #include "bot_task.h"
 
+DEFINE_EVENT_TYPE(wxEVT_TASK_START)
+DEFINE_EVENT_TYPE(wxEVT_TASK_END)
+DEFINE_EVENT_TYPE(wxEVT_TASK_ERROR)
+IMPLEMENT_DYNAMIC_CLASS(wxTaskEvent, wxNotifyEvent)
+
 BotTask::BotTask()
 {
     m_logxml = NULL;
@@ -40,6 +45,8 @@ bool BotTask::initBotTask(const char *pfilename)
 
     m_timer = new wxTimer(this);
 
+    this->Connect(wxID_ANY, wxEVT_TIMER, wxTimerEventHandler(BotTask::OnTimer));
+
     this->updateTimer();
 
     return true;
@@ -52,11 +59,13 @@ void BotTask::commitData()
 
 void BotTask::updateTimer()
 {
+    m_timer->Stop();
     wxString timmer_type(m_taskxml->getTaskTimerType(), wxConvUTF8);
 
     switch(wxAtoi(timmer_type))
     {
         case TIMMER_INTERVAL:
+            m_timer->Start(wxAtoi(wxString(m_taskxml->getTaskTimerTime(), wxConvUTF8)) * 1000, true);
             break;
 
         case TIMMER_SPECIFY:
@@ -110,4 +119,9 @@ void BotTask::setTaskTimerType(const char* ptype)
 void BotTask::setTaskTimerTime(const char* ptime)
 {
     m_taskxml->setTaskTimerTime(ptime);
+}
+
+void BotTask::OnTimer(wxTimerEvent& event)
+{
+    printf("timer alert!!");
 }

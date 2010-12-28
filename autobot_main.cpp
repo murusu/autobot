@@ -1,9 +1,38 @@
 #include "autobot_main.h"
 
+AutoBotMainFrame *AppMainUI = NULL;
+
+IMPLEMENT_APP(AutoBotApp)
+
+bool AutoBotApp::OnInit(void)
+{
+    m_checker = NULL;
+    const wxString name = wxString::Format(_("AutoBotApp-%s"), wxGetUserId().c_str());
+    m_checker = new wxSingleInstanceChecker(name);
+
+    if ( m_checker->IsAnotherRunning() )
+    {
+        wxLogError(_("Another program instance is already running, aborting."));
+
+        return false;
+    }
+
+    AppMainUI = new AutoBotMainFrame(NULL);
+    AppMainUI->Show(false);
+
+    return true;
+}
+
+int AutoBotApp::OnExit()
+{
+    if(m_checker) delete m_checker;
+    return 0;
+}
+
 //#include <dir.h>
 
-int main()
-{
+//int main()
+//{
 
  //char* chartemp = "Native String";
 
@@ -60,13 +89,14 @@ int main()
         //printf("fail");
     //}
     //testconfig.setData("test", "this is test");
-
+/*
     TaskManager* ptaskManager;
     ptaskManager = new TaskManager();
     ptaskManager->initTaskManager();
     while(true)
     {
     }
+    */
 /*
     BotTask* pbottask;
     pbottask = new BotTask();
@@ -77,4 +107,4 @@ int main()
     pbottask->updateLastRunDate();
     pbottask->commitData();
 */
-}
+//}

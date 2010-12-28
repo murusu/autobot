@@ -9,7 +9,7 @@
         <property name="disconnect_python_events">0</property>
         <property name="encoding">UTF-8</property>
         <property name="event_generation">connect</property>
-        <property name="file">autobot_UI</property>
+        <property name="file">autobot_UIbase</property>
         <property name="first_id">1000</property>
         <property name="help_provider">none</property>
         <property name="internationalize">1</property>
@@ -35,7 +35,7 @@
             <property name="id">wxID_ANY</property>
             <property name="maximum_size"></property>
             <property name="minimum_size"></property>
-            <property name="name">AutoBotMainFrame</property>
+            <property name="name">AutoBotMainFrameBase</property>
             <property name="pos"></property>
             <property name="size">600,400</property>
             <property name="style">wxCAPTION|wxCLOSE_BOX|wxSYSTEM_MENU</property>
@@ -53,7 +53,7 @@
             <event name="OnActivate"></event>
             <event name="OnActivateApp"></event>
             <event name="OnChar"></event>
-            <event name="OnClose"></event>
+            <event name="OnClose">OnCloseFrame</event>
             <event name="OnEnterWindow"></event>
             <event name="OnEraseBackground"></event>
             <event name="OnHibernate"></event>
@@ -86,7 +86,7 @@
                 <property name="permission">none</property>
                 <object class="sizeritem" expanded="0">
                     <property name="border">2</property>
-                    <property name="flag">wxEXPAND|wxTOP</property>
+                    <property name="flag">wxEXPAND</property>
                     <property name="proportion">0</property>
                     <object class="wxListCtrl" expanded="0">
                         <property name="bg"></property>
@@ -435,77 +435,6 @@
                 <event name="OnSetFocus"></event>
                 <event name="OnSize"></event>
                 <event name="OnUpdateUI"></event>
-                <object class="tool" expanded="0">
-                    <property name="bitmap">; Load From File [-1; -1]</property>
-                    <property name="id">wxID_ANY</property>
-                    <property name="kind">wxITEM_NORMAL</property>
-                    <property name="label">tool</property>
-                    <property name="name">m_tool1</property>
-                    <property name="statusbar"></property>
-                    <property name="tooltip"></property>
-                    <event name="OnMenuSelection"></event>
-                    <event name="OnToolClicked"></event>
-                    <event name="OnToolEnter"></event>
-                    <event name="OnToolRClicked"></event>
-                    <event name="OnUpdateUI"></event>
-                </object>
-                <object class="tool" expanded="0">
-                    <property name="bitmap"></property>
-                    <property name="id">wxID_ANY</property>
-                    <property name="kind">wxITEM_NORMAL</property>
-                    <property name="label">tool</property>
-                    <property name="name">m_tool2</property>
-                    <property name="statusbar"></property>
-                    <property name="tooltip"></property>
-                    <event name="OnMenuSelection"></event>
-                    <event name="OnToolClicked"></event>
-                    <event name="OnToolEnter"></event>
-                    <event name="OnToolRClicked"></event>
-                    <event name="OnUpdateUI"></event>
-                </object>
-                <object class="tool" expanded="0">
-                    <property name="bitmap"></property>
-                    <property name="id">wxID_ANY</property>
-                    <property name="kind">wxITEM_NORMAL</property>
-                    <property name="label">tool</property>
-                    <property name="name">m_tool3</property>
-                    <property name="statusbar"></property>
-                    <property name="tooltip"></property>
-                    <event name="OnMenuSelection"></event>
-                    <event name="OnToolClicked"></event>
-                    <event name="OnToolEnter"></event>
-                    <event name="OnToolRClicked"></event>
-                    <event name="OnUpdateUI"></event>
-                </object>
-                <object class="toolSeparator" expanded="0" />
-                <object class="tool" expanded="0">
-                    <property name="bitmap"></property>
-                    <property name="id">wxID_ANY</property>
-                    <property name="kind">wxITEM_NORMAL</property>
-                    <property name="label">tool</property>
-                    <property name="name">m_tool4</property>
-                    <property name="statusbar"></property>
-                    <property name="tooltip"></property>
-                    <event name="OnMenuSelection"></event>
-                    <event name="OnToolClicked"></event>
-                    <event name="OnToolEnter"></event>
-                    <event name="OnToolRClicked"></event>
-                    <event name="OnUpdateUI"></event>
-                </object>
-                <object class="tool" expanded="0">
-                    <property name="bitmap"></property>
-                    <property name="id">wxID_ANY</property>
-                    <property name="kind">wxITEM_NORMAL</property>
-                    <property name="label">tool</property>
-                    <property name="name">m_tool5</property>
-                    <property name="statusbar"></property>
-                    <property name="tooltip"></property>
-                    <event name="OnMenuSelection"></event>
-                    <event name="OnToolClicked"></event>
-                    <event name="OnToolEnter"></event>
-                    <event name="OnToolRClicked"></event>
-                    <event name="OnUpdateUI"></event>
-                </object>
             </object>
         </object>
         <object class="Dialog" expanded="1">
@@ -522,7 +451,7 @@
             <property name="id">wxID_ANY</property>
             <property name="maximum_size"></property>
             <property name="minimum_size"></property>
-            <property name="name">DialogTaskConfig</property>
+            <property name="name">DialogTaskConfigBase</property>
             <property name="pos"></property>
             <property name="size">600,400</property>
             <property name="style">wxDEFAULT_DIALOG_STYLE</property>
@@ -566,7 +495,7 @@
             <event name="OnSetFocus"></event>
             <event name="OnSize"></event>
             <event name="OnUpdateUI"></event>
-            <object class="wxBoxSizer" expanded="0">
+            <object class="wxBoxSizer" expanded="1">
                 <property name="minimum_size"></property>
                 <property name="name">bSizer2</property>
                 <property name="orient">wxVERTICAL</property>
@@ -1855,7 +1784,7 @@
             <property name="id">wxID_ANY</property>
             <property name="maximum_size"></property>
             <property name="minimum_size"></property>
-            <property name="name">DialogActionConfig</property>
+            <property name="name">DialogActionConfigBase</property>
             <property name="pos"></property>
             <property name="size">600,400</property>
             <property name="style">wxDEFAULT_DIALOG_STYLE</property>
@@ -1899,25 +1828,25 @@
             <event name="OnSetFocus"></event>
             <event name="OnSize"></event>
             <event name="OnUpdateUI"></event>
-            <object class="wxBoxSizer" expanded="0">
+            <object class="wxBoxSizer" expanded="1">
                 <property name="minimum_size"></property>
                 <property name="name">bSizer5</property>
                 <property name="orient">wxVERTICAL</property>
                 <property name="permission">none</property>
-                <object class="sizeritem" expanded="0">
+                <object class="sizeritem" expanded="1">
                     <property name="border">5</property>
                     <property name="flag">wxEXPAND</property>
                     <property name="proportion">10</property>
-                    <object class="wxBoxSizer" expanded="0">
+                    <object class="wxBoxSizer" expanded="1">
                         <property name="minimum_size"></property>
                         <property name="name">bSizer6</property>
                         <property name="orient">wxVERTICAL</property>
                         <property name="permission">none</property>
-                        <object class="sizeritem" expanded="0">
+                        <object class="sizeritem" expanded="1">
                             <property name="border">5</property>
                             <property name="flag">wxEXPAND | wxALL</property>
                             <property name="proportion">1</property>
-                            <object class="wxNotebook" expanded="0">
+                            <object class="wxNotebook" expanded="1">
                                 <property name="bg"></property>
                                 <property name="bitmapsize"></property>
                                 <property name="context_help"></property>

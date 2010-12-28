@@ -9,7 +9,7 @@
 			<Target title="Debug">
 				<Option output="bin\Debug\autobot" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj\Debug\" />
-				<Option type="1" />
+				<Option type="0" />
 				<Option compiler="gcc" />
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
@@ -32,7 +32,7 @@
 			<Target title="Release">
 				<Option output="bin\Release\autobot" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj\Release\" />
-				<Option type="1" />
+				<Option type="0" />
 				<Option compiler="gcc" />
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
@@ -83,6 +83,12 @@
 			<Add library="libwsock32.a" />
 			<Add library="libodbc32.a" />
 		</Linker>
+		<Unit filename="UI\autobot_TaskBarIcon.cpp" />
+		<Unit filename="UI\autobot_TaskBarIcon.h" />
+		<Unit filename="UI\autobot_UI.cpp" />
+		<Unit filename="UI\autobot_UI.h" />
+		<Unit filename="UI\autobot_UIbase.cpp" />
+		<Unit filename="UI\autobot_UIbase.h" />
 		<Unit filename="autobot_main.cpp" />
 		<Unit filename="autobot_main.h" />
 		<Unit filename="common\global_value.h" />

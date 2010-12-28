@@ -218,9 +218,25 @@ DialogTaskConfig::DialogTaskConfig( wxWindow* parent, wxWindowID id, const wxStr
 	m_panel_taskbase->SetSizer( bSizer8 );
 	m_panel_taskbase->Layout();
 	bSizer8->Fit( m_panel_taskbase );
-	m_notebook_taskconfig->AddPage( m_panel_taskbase, _("Base"), false );
+	m_notebook_taskconfig->AddPage( m_panel_taskbase, _("Base"), true );
 	m_panel_taskaction = new wxPanel( m_notebook_taskconfig, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
-	m_notebook_taskconfig->AddPage( m_panel_taskaction, _("Actions"), true );
+	wxBoxSizer* bSizer24;
+	bSizer24 = new wxBoxSizer( wxVERTICAL );
+	
+	wxBoxSizer* bSizer25;
+	bSizer25 = new wxBoxSizer( wxHORIZONTAL );
+	
+	bSizer24->Add( bSizer25, 1, wxEXPAND, 5 );
+	
+	wxBoxSizer* bSizer26;
+	bSizer26 = new wxBoxSizer( wxVERTICAL );
+	
+	bSizer24->Add( bSizer26, 1, wxEXPAND, 5 );
+	
+	m_panel_taskaction->SetSizer( bSizer24 );
+	m_panel_taskaction->Layout();
+	bSizer24->Fit( m_panel_taskaction );
+	m_notebook_taskconfig->AddPage( m_panel_taskaction, _("Actions"), false );
 	m_panel_taskother = new wxPanel( m_notebook_taskconfig, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
 	m_notebook_taskconfig->AddPage( m_panel_taskother, _("Others"), false );
 	

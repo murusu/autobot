@@ -1,8 +1,8 @@
 #ifndef XML_CONFIG_H_INCLUDED
 #define XML_CONFIG_H_INCLUDED
 
-#include "../common/global_value.h"
 #include "../common/xml_class.h"
+#include "../core/global_value.h"
 
 class ConfigXml : public XmlBase
 {

@@ -3,7 +3,7 @@
 
 #include <wx/event.h>
 #include <wx/timer.h>
-#include "../common/global_value.h"
+#include "../core/global_value.h"
 #include "../xmldata/xml_log.h"
 #include "../xmldata/xml_task.h"
 #include "task_event.h"

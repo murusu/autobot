@@ -32,4 +32,5 @@
 #define TIMMER_MONTHLY_INTERVAL             5
 #define TIMMER_YEARLY_INTERVAL              6
 
+
 #endif // GLOBAL_VALUE_H_INCLUDED

@@ -3,8 +3,8 @@
 
 #include <wx/filefn.h>
 #include <wx/datetime.h>
-#include "../common/global_value.h"
 #include "../common/xml_class.h"
+#include "../core/global_value.h"
 
 class TaskXml : public XmlBase
 {

@@ -1,6 +1,6 @@
 #include "autobot_TaskBarIcon.h"
 
-#include "taskbar.xpm"
+#include "../resources/taskbar_icon.xpm"
 
 
 enum {
@@ -10,7 +10,7 @@ enum {
 
 AutoBotTaskBarIcon::AutoBotTaskBarIcon():wxTaskBarIcon()
 {
-    wxIcon icon(taskbar_xpm);
+    wxIcon icon(taskbar_icon_xpm);
     SetIcon(icon, _("Run"));
 
     this->Connect (wxEVT_TASKBAR_LEFT_DCLICK, wxTaskBarIconEventHandler(AutoBotTaskBarIcon::OnLeftButtonDClick));

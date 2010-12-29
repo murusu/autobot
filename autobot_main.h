@@ -15,10 +15,12 @@ class AutoBotApp: public wxApp
 {
     private:
         wxSingleInstanceChecker *m_checker;
+        wxLocale                *m_locale;
 
     public:
         bool    OnInit(void);
         int     OnExit(void);
+        void    SetupLocale();
 };
 
 DECLARE_APP(AutoBotApp)

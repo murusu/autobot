@@ -1,5 +1,7 @@
 #include "autobot_main.h"
 
+#include <wx/msgdlg.h>
+
 AutoBotMainFrame *AppMainUI = NULL;
 
 IMPLEMENT_APP(AutoBotApp)
@@ -17,6 +19,8 @@ bool AutoBotApp::OnInit(void)
         return false;
     }
 
+    SetupLocale();
+
     AppMainUI = new AutoBotMainFrame(NULL);
     AppMainUI->Show(false);
 
@@ -25,8 +29,21 @@ bool AutoBotApp::OnInit(void)
 
 int AutoBotApp::OnExit()
 {
-    if(m_checker) delete m_checker;
+    if(m_checker)   delete m_checker;
+    if(m_locale)    delete m_locale;
     return 0;
+}
+
+void AutoBotApp::SetupLocale()
+{
+    m_locale = new wxLocale();
+
+    m_locale->Init();
+
+    m_locale->AddCatalogLookupPathPrefix(wxT("./lng"));
+    m_locale->AddCatalog(m_locale->GetCanonicalName());
+
+    wxMessageBox(m_locale->GetCanonicalName(), wxT("Confirm"), wxOK );
 }
 
 //#include <dir.h>

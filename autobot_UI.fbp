@@ -79,7 +79,7 @@
             <event name="OnSetFocus"></event>
             <event name="OnSize"></event>
             <event name="OnUpdateUI"></event>
-            <object class="wxBoxSizer" expanded="0">
+            <object class="wxBoxSizer" expanded="1">
                 <property name="minimum_size"></property>
                 <property name="name">bSizer12</property>
                 <property name="orient">wxVERTICAL</property>
@@ -209,7 +209,7 @@
                 <event name="OnSize"></event>
                 <event name="OnUpdateUI"></event>
             </object>
-            <object class="wxMenuBar" expanded="0">
+            <object class="wxMenuBar" expanded="1">
                 <property name="bg"></property>
                 <property name="context_help"></property>
                 <property name="context_menu">1</property>
@@ -258,8 +258,8 @@
                 <event name="OnSetFocus"></event>
                 <event name="OnSize"></event>
                 <event name="OnUpdateUI"></event>
-                <object class="wxMenu" expanded="0">
-                    <property name="label">System</property>
+                <object class="wxMenu" expanded="1">
+                    <property name="label">&amp;System</property>
                     <property name="name">m_menu_system</property>
                     <property name="permission">protected</property>
                     <object class="wxMenuItem" expanded="0">
@@ -269,7 +269,7 @@
                         <property name="help"></property>
                         <property name="id">wxID_ANY</property>
                         <property name="kind">wxITEM_NORMAL</property>
-                        <property name="label">Config</property>
+                        <property name="label">&amp;Config</property>
                         <property name="name">m_menuItem_config</property>
                         <property name="permission">none</property>
                         <property name="shortcut"></property>
@@ -284,7 +284,7 @@
                         <property name="help"></property>
                         <property name="id">wxID_ANY</property>
                         <property name="kind">wxITEM_NORMAL</property>
-                        <property name="label">Exit</property>
+                        <property name="label">&amp;Exit</property>
                         <property name="name">m_menuItem_exit</property>
                         <property name="permission">none</property>
                         <property name="shortcut"></property>
@@ -293,8 +293,8 @@
                         <event name="OnUpdateUI"></event>
                     </object>
                 </object>
-                <object class="wxMenu" expanded="0">
-                    <property name="label">Task</property>
+                <object class="wxMenu" expanded="1">
+                    <property name="label">&amp;Task</property>
                     <property name="name">m_menu_task</property>
                     <property name="permission">protected</property>
                     <object class="wxMenuItem" expanded="0">
@@ -304,7 +304,7 @@
                         <property name="help"></property>
                         <property name="id">wxID_ANY</property>
                         <property name="kind">wxITEM_NORMAL</property>
-                        <property name="label">Run task</property>
+                        <property name="label">&amp;Run task</property>
                         <property name="name">m_menuItem_runtask</property>
                         <property name="permission">none</property>
                         <property name="shortcut"></property>
@@ -319,7 +319,7 @@
                         <property name="help"></property>
                         <property name="id">wxID_ANY</property>
                         <property name="kind">wxITEM_NORMAL</property>
-                        <property name="label">Stop task</property>
+                        <property name="label">&amp;Stop task</property>
                         <property name="name">m_menuItem_stoptask</property>
                         <property name="permission">none</property>
                         <property name="shortcut"></property>
@@ -338,7 +338,7 @@
                         <property name="help"></property>
                         <property name="id">wxID_ANY</property>
                         <property name="kind">wxITEM_NORMAL</property>
-                        <property name="label">Add task</property>
+                        <property name="label">&amp;Add task</property>
                         <property name="name">m_menuItem_addtask</property>
                         <property name="permission">none</property>
                         <property name="shortcut"></property>
@@ -353,7 +353,7 @@
                         <property name="help"></property>
                         <property name="id">wxID_ANY</property>
                         <property name="kind">wxITEM_NORMAL</property>
-                        <property name="label">Delete task</property>
+                        <property name="label">&amp;Delete task</property>
                         <property name="name">m_menuItem_deltask</property>
                         <property name="permission">none</property>
                         <property name="shortcut"></property>
@@ -362,8 +362,8 @@
                         <event name="OnUpdateUI"></event>
                     </object>
                 </object>
-                <object class="wxMenu" expanded="0">
-                    <property name="label">Help</property>
+                <object class="wxMenu" expanded="1">
+                    <property name="label">&amp;Help</property>
                     <property name="name">m_menu_help</property>
                     <property name="permission">protected</property>
                     <object class="wxMenuItem" expanded="0">
@@ -373,7 +373,7 @@
                         <property name="help"></property>
                         <property name="id">wxID_ANY</property>
                         <property name="kind">wxITEM_NORMAL</property>
-                        <property name="label">About...</property>
+                        <property name="label">&amp;About...</property>
                         <property name="name">m_menuItem_about</property>
                         <property name="permission">none</property>
                         <property name="shortcut"></property>

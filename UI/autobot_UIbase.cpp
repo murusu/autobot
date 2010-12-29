@@ -25,43 +25,43 @@ AutoBotMainFrameBase::AutoBotMainFrameBase( wxWindow* parent, wxWindowID id, con
 	m_menubar1 = new wxMenuBar( 0 );
 	m_menu_system = new wxMenu();
 	wxMenuItem* m_menuItem_config;
-	m_menuItem_config = new wxMenuItem( m_menu_system, wxID_ANY, wxString( _("Config") ) , wxEmptyString, wxITEM_NORMAL );
+	m_menuItem_config = new wxMenuItem( m_menu_system, wxID_ANY, wxString( _("&Config") ) , wxEmptyString, wxITEM_NORMAL );
 	m_menu_system->Append( m_menuItem_config );
 	
 	wxMenuItem* m_menuItem_exit;
-	m_menuItem_exit = new wxMenuItem( m_menu_system, wxID_ANY, wxString( _("Exit") ) , wxEmptyString, wxITEM_NORMAL );
+	m_menuItem_exit = new wxMenuItem( m_menu_system, wxID_ANY, wxString( _("&Exit") ) , wxEmptyString, wxITEM_NORMAL );
 	m_menu_system->Append( m_menuItem_exit );
 	
-	m_menubar1->Append( m_menu_system, _("System") ); 
+	m_menubar1->Append( m_menu_system, _("&System") ); 
 	
 	m_menu_task = new wxMenu();
 	wxMenuItem* m_menuItem_runtask;
-	m_menuItem_runtask = new wxMenuItem( m_menu_task, wxID_ANY, wxString( _("Run task") ) , wxEmptyString, wxITEM_NORMAL );
+	m_menuItem_runtask = new wxMenuItem( m_menu_task, wxID_ANY, wxString( _("&Run task") ) , wxEmptyString, wxITEM_NORMAL );
 	m_menu_task->Append( m_menuItem_runtask );
 	
 	wxMenuItem* m_menuItem_stoptask;
-	m_menuItem_stoptask = new wxMenuItem( m_menu_task, wxID_ANY, wxString( _("Stop task") ) , wxEmptyString, wxITEM_NORMAL );
+	m_menuItem_stoptask = new wxMenuItem( m_menu_task, wxID_ANY, wxString( _("&Stop task") ) , wxEmptyString, wxITEM_NORMAL );
 	m_menu_task->Append( m_menuItem_stoptask );
 	
 	wxMenuItem* m_separator1;
 	m_separator1 = m_menu_task->AppendSeparator();
 	
 	wxMenuItem* m_menuItem_addtask;
-	m_menuItem_addtask = new wxMenuItem( m_menu_task, wxID_ANY, wxString( _("Add task") ) , wxEmptyString, wxITEM_NORMAL );
+	m_menuItem_addtask = new wxMenuItem( m_menu_task, wxID_ANY, wxString( _("&Add task") ) , wxEmptyString, wxITEM_NORMAL );
 	m_menu_task->Append( m_menuItem_addtask );
 	
 	wxMenuItem* m_menuItem_deltask;
-	m_menuItem_deltask = new wxMenuItem( m_menu_task, wxID_ANY, wxString( _("Delete task") ) , wxEmptyString, wxITEM_NORMAL );
+	m_menuItem_deltask = new wxMenuItem( m_menu_task, wxID_ANY, wxString( _("&Delete task") ) , wxEmptyString, wxITEM_NORMAL );
 	m_menu_task->Append( m_menuItem_deltask );
 	
-	m_menubar1->Append( m_menu_task, _("Task") ); 
+	m_menubar1->Append( m_menu_task, _("&Task") ); 
 	
 	m_menu_help = new wxMenu();
 	wxMenuItem* m_menuItem_about;
-	m_menuItem_about = new wxMenuItem( m_menu_help, wxID_ANY, wxString( _("About...") ) , wxEmptyString, wxITEM_NORMAL );
+	m_menuItem_about = new wxMenuItem( m_menu_help, wxID_ANY, wxString( _("&About...") ) , wxEmptyString, wxITEM_NORMAL );
 	m_menu_help->Append( m_menuItem_about );
 	
-	m_menubar1->Append( m_menu_help, _("Help") ); 
+	m_menubar1->Append( m_menu_help, _("&Help") ); 
 	
 	this->SetMenuBar( m_menubar1 );
 	

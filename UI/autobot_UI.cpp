@@ -13,6 +13,7 @@ AutoBotMainFrame::AutoBotMainFrame(wxFrame *frame) : AutoBotMainFrameBase(frame)
 
 AutoBotMainFrame::~AutoBotMainFrame()
 {
+    delete m_taskBarIcon;
 }
 
 void AutoBotMainFrame::OnCloseFrame( wxCloseEvent& event )

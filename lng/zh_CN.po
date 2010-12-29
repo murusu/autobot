@@ -1,0 +1,174 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: autobot\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-29 11:22+0800\n"
+"PO-Revision-Date: \n"
+"Last-Translator: murusu <murusu0.0@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Chinese\n"
+"X-Poedit-Country: CHINA\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Basepath: D:\\Ram\\work\\CodeBlockProject\\autobot\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: autobot_main.cpp:12
+#, c-format
+msgid "AutoBotApp-%s"
+msgstr "AutoBotApp-%s"
+
+#: autobot_main.cpp:17
+msgid "Another program instance is already running, aborting."
+msgstr "程序已经启动"
+
+#: UI/autobot_TaskBarIcon.cpp:14
+msgid "Run"
+msgstr "运行"
+
+#: UI/autobot_TaskBarIcon.cpp:42
+msgid "Open Main UI"
+msgstr "打开主界面"
+
+#: UI/autobot_TaskBarIcon.cpp:44
+msgid "Exit"
+msgstr "退出"
+
+#: UI/autobot_UIbase.cpp:28
+msgid "&Config"
+msgstr "设置"
+
+#: UI/autobot_UIbase.cpp:32
+msgid "&Exit"
+msgstr "退出"
+
+#: UI/autobot_UIbase.cpp:35
+msgid "&System"
+msgstr "系统"
+
+#: UI/autobot_UIbase.cpp:39
+msgid "&Run task"
+msgstr "运行任务"
+
+#: UI/autobot_UIbase.cpp:43
+msgid "&Stop task"
+msgstr "停止任务"
+
+#: UI/autobot_UIbase.cpp:50
+msgid "&Add task"
+msgstr "添加任务"
+
+#: UI/autobot_UIbase.cpp:54
+msgid "&Delete task"
+msgstr "删除任务"
+
+#: UI/autobot_UIbase.cpp:57
+msgid "&Task"
+msgstr "任务"
+
+#: UI/autobot_UIbase.cpp:61
+msgid "&About..."
+msgstr "关于..."
+
+#: UI/autobot_UIbase.cpp:64
+msgid "&Help"
+msgstr "帮助"
+
+#: UI/autobot_UIbase.cpp:111
+msgid "Task Name:"
+msgstr "任务名："
+
+#: UI/autobot_UIbase.cpp:123
+msgid "Action Type"
+msgstr "动作类型"
+
+#: UI/autobot_UIbase.cpp:127
+msgid "Interval"
+msgstr "间隔"
+
+#: UI/autobot_UIbase.cpp:127
+msgid "Once"
+msgstr "单次运行"
+
+#: UI/autobot_UIbase.cpp:127
+msgid "Daily"
+msgstr "每日运行"
+
+#: UI/autobot_UIbase.cpp:127
+msgid "Weekly"
+msgstr "每周运行"
+
+#: UI/autobot_UIbase.cpp:127
+msgid "Monthly"
+msgstr "每月运行"
+
+#: UI/autobot_UIbase.cpp:127
+msgid "Yearly"
+msgstr "每年运行"
+
+#: UI/autobot_UIbase.cpp:147
+msgid "Interval:"
+msgstr "间隔："
+
+#: UI/autobot_UIbase.cpp:159
+#: UI/autobot_UIbase.cpp:171
+#: UI/autobot_UIbase.cpp:183
+#: UI/autobot_UIbase.cpp:195
+msgid "0"
+msgstr "0"
+
+#: UI/autobot_UIbase.cpp:162
+msgid "Days"
+msgstr "天"
+
+#: UI/autobot_UIbase.cpp:174
+msgid "Hours"
+msgstr "小时"
+
+#: UI/autobot_UIbase.cpp:186
+msgid "Minutes"
+msgstr "分钟"
+
+#: UI/autobot_UIbase.cpp:198
+msgid "Seconds"
+msgstr "秒"
+
+#: UI/autobot_UIbase.cpp:221
+msgid "Base"
+msgstr "基本设置"
+
+#: UI/autobot_UIbase.cpp:239
+msgid "Actions"
+msgstr "动作设置"
+
+#: UI/autobot_UIbase.cpp:241
+msgid "Others"
+msgstr "其他设置"
+
+#: UI/autobot_UIbase.cpp:250
+#: UI/autobot_UIbase.cpp:288
+msgid "Save"
+msgstr "保存"
+
+#: UI/autobot_UIbase.cpp:277
+msgid "Condition"
+msgstr "条件"
+
+#: UI/autobot_UIbase.cpp:279
+msgid "Execution"
+msgstr "执行"
+
+#: UI/autobot_UIbase.h:60
+msgid "Auto Bot"
+msgstr "任务机器人"
+
+#: UI/autobot_UIbase.h:95
+msgid "Task Setting"
+msgstr "任务设置"
+
+#: UI/autobot_UIbase.h:115
+msgid "Action Setting"
+msgstr "动作设置"
+

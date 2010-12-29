@@ -1,6 +1,6 @@
 #include "autobot_main.h"
 
-#include <wx/msgdlg.h>
+//#include <wx/msgdlg.h>
 
 AutoBotMainFrame *AppMainUI = NULL;
 
@@ -43,7 +43,7 @@ void AutoBotApp::SetupLocale()
     m_locale->AddCatalogLookupPathPrefix(wxT("./lng"));
     m_locale->AddCatalog(m_locale->GetCanonicalName());
 
-    wxMessageBox(m_locale->GetCanonicalName(), wxT("Confirm"), wxOK );
+    //wxMessageBox(m_locale->GetCanonicalName(), wxT("Confirm"), wxOK );
 }
 
 //#include <dir.h>

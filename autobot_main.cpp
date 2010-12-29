@@ -37,7 +37,6 @@ int AutoBotApp::OnExit()
 void AutoBotApp::SetupLocale()
 {
     m_locale = new wxLocale();
-
     m_locale->Init();
 
     m_locale->AddCatalogLookupPathPrefix(wxT("./lng"));

@@ -1,7 +1,6 @@
 #ifndef AUTOBOT_UI_H_INCLUDED
 #define AUTOBOT_UI_H_INCLUDED
 
-
 #include "autobot_UIbase.h"
 #include "autobot_TaskBarIcon.h"
 

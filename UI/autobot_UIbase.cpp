@@ -7,6 +7,8 @@
 
 #include "autobot_UIbase.h"
 
+#include "../resources/toolsbar_run.xpm"
+
 ///////////////////////////////////////////////////////////////////////////
 
 AutoBotMainFrameBase::AutoBotMainFrameBase( wxWindow* parent, wxWindowID id, const wxString& title, const wxPoint& pos, const wxSize& size, long style ) : wxFrame( parent, id, title, pos, size, style )
@@ -16,7 +18,9 @@ AutoBotMainFrameBase::AutoBotMainFrameBase( wxWindow* parent, wxWindowID id, con
 	wxBoxSizer* bSizer12;
 	bSizer12 = new wxBoxSizer( wxVERTICAL );
 	
-	m_listCtrl_tasks = new wxListCtrl( this, wxID_ANY, wxPoint( -1,-1 ), wxSize( -1,300 ), wxLC_HRULES|wxLC_REPORT|wxLC_SINGLE_SEL|wxLC_VIRTUAL|wxLC_VRULES );
+	m_listCtrl_tasks = new wxListCtrl( this, wxID_ANY, wxPoint( -1,-1 ), wxSize( -1,310 ), wxLC_HRULES|wxLC_REPORT|wxLC_SINGLE_SEL|wxLC_VIRTUAL|wxLC_VRULES );
+	m_listCtrl_tasks->SetFont( wxFont( 10, 70, 90, 90, false, wxEmptyString ) );
+	
 	bSizer12->Add( m_listCtrl_tasks, 0, wxEXPAND, 2 );
 	
 	this->SetSizer( bSizer12 );
@@ -65,8 +69,14 @@ AutoBotMainFrameBase::AutoBotMainFrameBase( wxWindow* parent, wxWindowID id, con
 	
 	this->SetMenuBar( m_menubar1 );
 	
-	m_toolBar1 = this->CreateToolBar( wxTB_HORIZONTAL, wxID_ANY ); 
-	m_toolBar1->Realize();
+	m_toolBar_main = this->CreateToolBar( wxTB_FLAT|wxTB_HORIZONTAL, wxID_ANY ); 
+	m_toolBar_main->AddTool( wxID_ANY, _("tool"), wxBitmap( toolsbar_run_xpm ), wxNullBitmap, wxITEM_NORMAL, _("Run Task"), wxEmptyString ); 
+	m_toolBar_main->AddTool( wxID_ANY, _("tool"), wxBitmap( toolsbar_run_xpm ), wxNullBitmap, wxITEM_NORMAL, wxEmptyString, wxEmptyString ); 
+	m_toolBar_main->AddTool( wxID_ANY, _("tool"), wxBitmap( toolsbar_run_xpm ), wxNullBitmap, wxITEM_NORMAL, wxEmptyString, wxEmptyString ); 
+	m_toolBar_main->AddSeparator(); 
+	m_toolBar_main->AddTool( wxID_ANY, _("tool"), wxBitmap( toolsbar_run_xpm ), wxNullBitmap, wxITEM_NORMAL, wxEmptyString, wxEmptyString ); 
+	m_toolBar_main->AddTool( wxID_ANY, _("tool"), wxBitmap( toolsbar_run_xpm ), wxNullBitmap, wxITEM_NORMAL, wxEmptyString, wxEmptyString ); 
+	m_toolBar_main->Realize();
 	
 	
 	this->Centre( wxBOTH );

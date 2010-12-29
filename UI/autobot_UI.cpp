@@ -8,6 +8,17 @@ AutoBotMainFrame::AutoBotMainFrame(wxFrame *frame) : AutoBotMainFrameBase(frame)
 
     wxIcon icon(taskbar_icon_xpm);
     this->SetIcon(icon);
+
+    m_listCtrl_tasks->InsertColumn(0, _("Task Name"));
+    m_listCtrl_tasks->InsertColumn(1, _("Next Activity Time"));
+    m_listCtrl_tasks->InsertColumn(2, _("Status"));
+
+    m_listCtrl_tasks->SetColumnWidth(0, 80);
+    m_listCtrl_tasks->SetColumnWidth(1, 200);
+    m_listCtrl_tasks->SetColumnWidth(2, 80);
+
+    m_listCtrl_tasks->SetItemCount(1000);
+
     this->Centre();
 }
 

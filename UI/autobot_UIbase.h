@@ -49,7 +49,7 @@ class AutoBotMainFrameBase : public wxFrame
 		wxMenu* m_menu_system;
 		wxMenu* m_menu_task;
 		wxMenu* m_menu_help;
-		wxToolBar* m_toolBar1;
+		wxToolBar* m_toolBar_main;
 		
 		// Virtual event handlers, overide them in your derived class
 		virtual void OnCloseFrame( wxCloseEvent& event ) { event.Skip(); }

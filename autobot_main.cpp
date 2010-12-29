@@ -8,7 +8,9 @@ IMPLEMENT_APP(AutoBotApp)
 
 bool AutoBotApp::OnInit(void)
 {
-    m_checker = NULL;
+    m_checker   = NULL;
+    m_locale    = NULL;
+
     const wxString name = wxString::Format(_("AutoBotApp-%s"), wxGetUserId().c_str());
     m_checker = new wxSingleInstanceChecker(name);
 

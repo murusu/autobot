@@ -7,9 +7,10 @@ IMPLEMENT_DYNAMIC_CLASS(wxTaskEvent, wxNotifyEvent)
 
 BotTask::BotTask()
 {
-    m_logxml = NULL;
-    m_taskxml = NULL;
-    m_timer = NULL;
+    m_logxml        = NULL;
+    m_taskxml       = NULL;
+    m_timer         = NULL;
+    m_taskstatus    = TASK_STOP;
 }
 
 BotTask::~BotTask()

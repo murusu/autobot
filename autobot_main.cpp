@@ -2,7 +2,7 @@
 
 //#include <wx/msgdlg.h>
 
-AutoBotMainFrame *AppMainUI = NULL;
+
 
 IMPLEMENT_APP(AutoBotApp)
 
@@ -10,6 +10,7 @@ bool AutoBotApp::OnInit(void)
 {
     m_checker   = NULL;
     m_locale    = NULL;
+    m_appui     = NULL;
 
     const wxString name = wxString::Format(_("AutoBotApp-%s"), wxGetUserId().c_str());
     m_checker = new wxSingleInstanceChecker(name);
@@ -23,8 +24,14 @@ bool AutoBotApp::OnInit(void)
 
     SetupLocale();
 
-    AppMainUI = new AutoBotMainFrame(NULL);
-    AppMainUI->Show(false);
+    m_appui = new AutoBotMainFrame(NULL);
+    m_appui->Show(false);
+
+    TaskManager* ptaskManager;
+    ptaskManager = new TaskManager();
+    ptaskManager->initTaskManager();
+
+    ptaskManager->updateTaskList();
 
     return true;
 }
@@ -45,6 +52,11 @@ void AutoBotApp::SetupLocale()
     m_locale->AddCatalog(m_locale->GetCanonicalName());
 
     //wxMessageBox(m_locale->GetCanonicalName(), wxT("Confirm"), wxOK );
+}
+
+AutoBotMainFrame* AutoBotApp::getMainUI()
+{
+    return m_appui;
 }
 
 //#include <dir.h>

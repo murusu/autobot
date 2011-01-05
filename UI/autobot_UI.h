@@ -17,6 +17,8 @@ class AutoBotMainFrame : public AutoBotMainFrameBase
 	public:
 		AutoBotMainFrame(wxFrame *frame);
 		~AutoBotMainFrame();
+
+		wxListCtrl* getTaskListCtrl();
 };
 
 #endif // AUTOBOT_UI_H_INCLUDED

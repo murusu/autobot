@@ -5,7 +5,9 @@
 #include <wx/dynarray.h>
 #include <wx/arrimpl.cpp>
 #include <wx/filefn.h>
+
 #include "bot_task.h"
+#include "../autobot_main.h"
 
 class BotTask;
 WX_DECLARE_OBJARRAY(BotTask *, TaskArray);
@@ -21,6 +23,7 @@ class TaskManager
         ~TaskManager();
 
         bool initTaskManager();
+        void updateTaskList();
 };
 
 #endif // TASK_MANAGER_H_INCLUDED

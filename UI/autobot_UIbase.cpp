@@ -18,8 +18,8 @@ AutoBotMainFrameBase::AutoBotMainFrameBase( wxWindow* parent, wxWindowID id, con
 	wxBoxSizer* bSizer12;
 	bSizer12 = new wxBoxSizer( wxVERTICAL );
 	
-	m_listCtrl_tasks = new wxListCtrl( this, wxID_ANY, wxPoint( -1,-1 ), wxSize( -1,310 ), wxLC_HRULES|wxLC_REPORT|wxLC_SINGLE_SEL|wxLC_VIRTUAL|wxLC_VRULES );
-	m_listCtrl_tasks->SetFont( wxFont( 10, 70, 90, 90, false, wxEmptyString ) );
+	m_listCtrl_tasks = new wxListCtrl( this, wxID_ANY, wxPoint( -1,-1 ), wxSize( -1,310 ), wxLC_HRULES|wxLC_REPORT|wxLC_SINGLE_SEL|wxLC_VRULES );
+	m_listCtrl_tasks->SetFont( wxFont( wxNORMAL_FONT->GetPointSize(), 70, 90, 90, false, wxEmptyString ) );
 	
 	bSizer12->Add( m_listCtrl_tasks, 0, wxEXPAND, 2 );
 	
@@ -39,23 +39,30 @@ AutoBotMainFrameBase::AutoBotMainFrameBase( wxWindow* parent, wxWindowID id, con
 	m_menubar1->Append( m_menu_system, _("&System") ); 
 	
 	m_menu_task = new wxMenu();
+	wxMenuItem* m_menuItem_updatelist;
+	m_menuItem_updatelist = new wxMenuItem( m_menu_task, wxID_ANY, wxString( _("&Update Task List") ) , wxEmptyString, wxITEM_NORMAL );
+	m_menu_task->Append( m_menuItem_updatelist );
+	
+	wxMenuItem* m_separator2;
+	m_separator2 = m_menu_task->AppendSeparator();
+	
 	wxMenuItem* m_menuItem_runtask;
-	m_menuItem_runtask = new wxMenuItem( m_menu_task, wxID_ANY, wxString( _("&Run task") ) , wxEmptyString, wxITEM_NORMAL );
+	m_menuItem_runtask = new wxMenuItem( m_menu_task, wxID_ANY, wxString( _("&Run Task") ) , wxEmptyString, wxITEM_NORMAL );
 	m_menu_task->Append( m_menuItem_runtask );
 	
 	wxMenuItem* m_menuItem_stoptask;
-	m_menuItem_stoptask = new wxMenuItem( m_menu_task, wxID_ANY, wxString( _("&Stop task") ) , wxEmptyString, wxITEM_NORMAL );
+	m_menuItem_stoptask = new wxMenuItem( m_menu_task, wxID_ANY, wxString( _("&Stop Task") ) , wxEmptyString, wxITEM_NORMAL );
 	m_menu_task->Append( m_menuItem_stoptask );
 	
 	wxMenuItem* m_separator1;
 	m_separator1 = m_menu_task->AppendSeparator();
 	
 	wxMenuItem* m_menuItem_addtask;
-	m_menuItem_addtask = new wxMenuItem( m_menu_task, wxID_ANY, wxString( _("&Add task") ) , wxEmptyString, wxITEM_NORMAL );
+	m_menuItem_addtask = new wxMenuItem( m_menu_task, wxID_ANY, wxString( _("&Add Task") ) , wxEmptyString, wxITEM_NORMAL );
 	m_menu_task->Append( m_menuItem_addtask );
 	
 	wxMenuItem* m_menuItem_deltask;
-	m_menuItem_deltask = new wxMenuItem( m_menu_task, wxID_ANY, wxString( _("&Delete task") ) , wxEmptyString, wxITEM_NORMAL );
+	m_menuItem_deltask = new wxMenuItem( m_menu_task, wxID_ANY, wxString( _("&Delete Task") ) , wxEmptyString, wxITEM_NORMAL );
 	m_menu_task->Append( m_menuItem_deltask );
 	
 	m_menubar1->Append( m_menu_task, _("&Task") ); 
@@ -228,7 +235,7 @@ DialogTaskConfigBase::DialogTaskConfigBase( wxWindow* parent, wxWindowID id, con
 	m_panel_taskbase->SetSizer( bSizer8 );
 	m_panel_taskbase->Layout();
 	bSizer8->Fit( m_panel_taskbase );
-	m_notebook_taskconfig->AddPage( m_panel_taskbase, _("Base"), true );
+	m_notebook_taskconfig->AddPage( m_panel_taskbase, _("Base"), false );
 	m_panel_taskaction = new wxPanel( m_notebook_taskconfig, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
 	wxBoxSizer* bSizer24;
 	bSizer24 = new wxBoxSizer( wxVERTICAL );
@@ -248,7 +255,7 @@ DialogTaskConfigBase::DialogTaskConfigBase( wxWindow* parent, wxWindowID id, con
 	bSizer24->Fit( m_panel_taskaction );
 	m_notebook_taskconfig->AddPage( m_panel_taskaction, _("Actions"), false );
 	m_panel_taskother = new wxPanel( m_notebook_taskconfig, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
-	m_notebook_taskconfig->AddPage( m_panel_taskother, _("Others"), false );
+	m_notebook_taskconfig->AddPage( m_panel_taskother, _("Others"), true );
 	
 	bSizer3->Add( m_notebook_taskconfig, 1, wxEXPAND | wxALL, 5 );
 	
@@ -284,9 +291,9 @@ DialogActionConfigBase::DialogActionConfigBase( wxWindow* parent, wxWindowID id,
 	
 	m_notebook_actionconfig = new wxNotebook( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0 );
 	m_panel_condition = new wxPanel( m_notebook_actionconfig, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
-	m_notebook_actionconfig->AddPage( m_panel_condition, _("Condition"), true );
+	m_notebook_actionconfig->AddPage( m_panel_condition, _("Condition"), false );
 	m_panel_execution = new wxPanel( m_notebook_actionconfig, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
-	m_notebook_actionconfig->AddPage( m_panel_execution, _("Execution"), false );
+	m_notebook_actionconfig->AddPage( m_panel_execution, _("Execution"), true );
 	
 	bSizer6->Add( m_notebook_actionconfig, 1, wxEXPAND | wxALL, 5 );
 	

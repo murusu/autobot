@@ -27,17 +27,17 @@ bool TaskManager::initTaskManager()
 {
     m_taskarray = new TaskArray();
 
-    if(!wxDirExists(wxT(TASK_XML_PATH)))
+    if(!wxDirExists(wxString(TASK_XML_PATH, wxConvUTF8)))
     {
-        if(!wxMkdir(wxT(TASK_XML_PATH))) return false;
+        if(!wxMkdir(wxString(TASK_XML_PATH, wxConvUTF8))) return false;
     }
 
-    if(!wxDirExists(wxT(LOG_XML_PATH)))
+    if(!wxDirExists(wxString(LOG_XML_PATH, wxConvUTF8)))
     {
-        if(!wxMkdir(wxT(LOG_XML_PATH))) return false;
+        if(!wxMkdir(wxString(LOG_XML_PATH, wxConvUTF8))) return false;
     }
 
-    wxDir dir(wxT(TASK_XML_PATH));
+    wxDir dir(wxString(TASK_XML_PATH, wxConvUTF8));
     if(!dir.IsOpened())  return false;
 
     wxString filename;
@@ -53,4 +53,49 @@ bool TaskManager::initTaskManager()
     }
 
     return true;
+}
+
+void TaskManager::updateTaskList()
+{
+    wxListCtrl* ptasklist = NULL;
+    ptasklist = wxGetApp().getMainUI()->getTaskListCtrl();
+/*
+    tasklist->InsertItem(0, _("001"));
+    tasklist->SetItem(0, 1, _("syscode"));
+    tasklist->SetItem(0, 2, _("commoditycode"));
+    tasklist->SetItem(0, 3, _("name"));
+*/
+    if(m_taskarray)
+    {
+        size_t tasknum = m_taskarray->GetCount();
+
+        for(size_t index = 0; index < tasknum; index++)
+        {
+            ptasklist->InsertItem(index, _("001"));
+            ptasklist->SetItem(index, 1, wxString(m_taskarray->Item(index)->getTaskName(), wxConvUTF8));
+
+            switch(m_taskarray->Item(index)->getTaskStatus())
+            {
+                case TASK_WAITFORRUNING:
+                    ptasklist->SetItem(index, 3, _("waiting"));
+                    break;
+
+                case TASK_RUNNING:
+                    ptasklist->SetItem(index, 3, _("running"));
+                    break;
+
+                case TASK_STOP:
+                    ptasklist->SetItem(index, 3, _("stop"));
+                    break;
+
+                case TASK_WAITFORRETRY:
+                    ptasklist->SetItem(index, 3, _("waiting for retry"));
+                    break;
+
+                default:
+                    ptasklist->SetItem(index, 3, _("unknown"));
+                    break;
+            }
+        }
+    }
 }

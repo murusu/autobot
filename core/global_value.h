@@ -1,36 +1,41 @@
 #ifndef GLOBAL_VALUE_H_INCLUDED
 #define GLOBAL_VALUE_H_INCLUDED
 
-#define CONFIG_VERSION                      "0.10"
-#define CONFIG_XML_NAME                     "config.xml"
-#define CONFIG_XML_ROOT_NAME                "configrations"
+const char * const CONFIG_VERSION               = "0.10";
+const char * const CONFIG_XML_NAME              = "config.xml";
+const char * const CONFIG_XML_ROOT_NAME         = "configrations";
 
-#define TASK_XML_PATH                       "tasks"
-#define TASK_XML_ROOT_NAME                  "task"
-#define LOG_XML_PATH                        "logs"
-#define LOG_XML_ROOT_NAME                   "logs"
-#define LOG_XML_ITEM_NAME                   "log"
-#define LOG_XML_ITEM_DATE                   "date"
-#define LOG_XML_ITEM_CONTENT                "content"
+const char * const TASK_XML_PATH                = "tasks";
+const char * const TASK_XML_ROOT_NAME           = "task";
+const char * const LOG_XML_PATH                 = "logs";
+const char * const LOG_XML_ROOT_NAME            = "logs";
+const char * const LOG_XML_ITEM_NAME            = "log";
+const char * const LOG_XML_ITEM_DATE            = "date";
+const char * const LOG_XML_ITEM_CONTENT         = "content";
 
-#define TASK_XML_ACTION                     "actions/action"
-#define TASK_XML_ACTION_CONTENT             "content"
-#define TASK_XML_LAST_RUN_DATE              "activity"
-#define TASK_XML_TIMER                      "timer"
-#define TASK_XML_NAME                       "name"
-#define TASK_XML_TIMER_TYPE                 "type"
-#define TASK_XML_TIMER_TIME                 "time"
-#define TASK_XML_TIMER_PARAM                "timer/param"
+const char * const TASK_XML_ACTION              = "actions/action";
+const char * const TASK_XML_ACTION_CONTENT      = "content";
+const char * const TASK_XML_LAST_RUN_DATE       = "activity";
+const char * const TASK_XML_TIMER               = "timer";
+const char * const TASK_XML_NAME                = "name";
+const char * const TASK_XML_TIMER_TYPE          = "type";
+const char * const TASK_XML_TIMER_TIME          = "time";
+const char * const TASK_XML_TIMER_PARAM         = "timer/param";
 
-#define TASK_XML_PREFIX_LEN                 5
-#define TASK_XML_NAME_LEN                   5
+const size_t TASK_XML_PREFIX_LEN                = 5;
+const size_t TASK_XML_NAME_LEN                  = 5;
 
-#define TIMMER_INTERVAL                     1
-#define TIMMER_SPECIFY                      2
-#define TIMMER_DAILY_INTERVAL               3
-#define TIMMER_WEEKLY_INTERVAL              4
-#define TIMMER_MONTHLY_INTERVAL             5
-#define TIMMER_YEARLY_INTERVAL              6
+const size_t TIMMER_INTERVAL                    = 1;
+const size_t TIMMER_SPECIFY                     = 2;
+const size_t TIMMER_DAILY_INTERVAL              = 3;
+const size_t TIMMER_WEEKLY_INTERVAL             = 4;
+const size_t TIMMER_MONTHLY_INTERVAL            = 5;
+const size_t TIMMER_YEARLY_INTERVAL             = 6;
+
+const size_t TASK_WAITFORRUNING                 = 1;
+const size_t TASK_RUNNING                       = 2;
+const size_t TASK_STOP                          = 3;
+const size_t TASK_WAITFORRETRY                  = 4;
 
 
 #endif // GLOBAL_VALUE_H_INCLUDED

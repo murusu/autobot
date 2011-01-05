@@ -9,15 +9,10 @@ AutoBotMainFrame::AutoBotMainFrame(wxFrame *frame) : AutoBotMainFrameBase(frame)
     wxIcon icon(taskbar_icon_xpm);
     this->SetIcon(icon);
 
-    m_listCtrl_tasks->InsertColumn(0, _("Task Name"));
-    m_listCtrl_tasks->InsertColumn(1, _("Next Activity Time"));
-    m_listCtrl_tasks->InsertColumn(2, _("Status"));
-
-    m_listCtrl_tasks->SetColumnWidth(0, 80);
-    m_listCtrl_tasks->SetColumnWidth(1, 200);
-    m_listCtrl_tasks->SetColumnWidth(2, 80);
-
-    m_listCtrl_tasks->SetItemCount(1000);
+    m_listCtrl_tasks->InsertColumn(0, _("ID"), wxLIST_FORMAT_CENTRE, 0);
+    m_listCtrl_tasks->InsertColumn(1, _("Task Name"), wxLIST_FORMAT_CENTRE, 180);
+    m_listCtrl_tasks->InsertColumn(2, _("Next Activity Time"), wxLIST_FORMAT_CENTRE, 270);
+    m_listCtrl_tasks->InsertColumn(3, _("Status"), wxLIST_FORMAT_CENTRE, 100);
 
     this->Centre();
 }
@@ -31,4 +26,9 @@ void AutoBotMainFrame::OnCloseFrame( wxCloseEvent& event )
 {
     this->Show(false);
     event.Veto();
+}
+
+wxListCtrl* AutoBotMainFrame::getTaskListCtrl()
+{
+    return m_listCtrl_tasks;
 }

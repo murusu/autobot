@@ -61,9 +61,9 @@ void BotTask::commitData()
 void BotTask::updateTimer()
 {
     m_timer->Stop();
-    wxString timmer_type(m_taskxml->getTaskTimerType(), wxConvUTF8);
+    //wxString timmer_type(m_taskxml->getTaskTimerType(), wxConvUTF8);
 
-    switch(wxAtoi(timmer_type))
+    switch(m_taskxml->getTaskTimerType())
     {
         case TIMMER_INTERVAL:
             m_timer->Start(wxAtoi(wxString(m_taskxml->getTaskTimerTime(), wxConvUTF8)) * 1000, true);
@@ -87,12 +87,12 @@ size_t BotTask::getTaskStatus()
     return m_taskstatus;
 }
 
-time_t BotTask::getLastRunDate()
+time_t BotTask::getNextRunDate()
 {
-    return m_taskxml->getLastRunDate();
+    return 200;
 }
 
-const char* BotTask::getTaskTimerType()
+size_t BotTask::getTaskTimerType()
 {
     return m_taskxml->getTaskTimerType();
 }
@@ -109,7 +109,7 @@ void BotTask::setTaskName(const char* pname)
 
 void BotTask::updateLastRunDate()
 {
-    m_taskxml->updateLastRunDate();
+    //m_taskxml->updateLastRunDate();
 }
 
 void BotTask::setTaskTimerType(const char* ptype)

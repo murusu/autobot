@@ -30,8 +30,8 @@ class BotTask : public wxEvtHandler
 
         const char* getTaskName();
         size_t getTaskStatus();
-        time_t getLastRunDate();
-        const char* getTaskTimerType();
+        time_t getNextRunDate();
+        size_t getTaskTimerType();
         const char* getTaskTimerTime();
 
         void setTaskName(const char* pname);

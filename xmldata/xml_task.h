@@ -21,12 +21,12 @@ class TaskXml : public XmlBase
         void commitData();
 
         const char* getTaskName();
-        time_t      getLastRunDate();
-        const char* getTaskTimerType();
+        //time_t      getLastRunDate();
+        size_t getTaskTimerType();
         const char* getTaskTimerTime();
 
         void setTaskName(const char* pname);
-        void updateLastRunDate();
+        //void updateLastRunDate();
         void setTaskTimerType(const char* ptype);
         void setTaskTimerTime(const char* ptime);
 };

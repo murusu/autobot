@@ -48,7 +48,7 @@ const char* TaskXml::getTaskName()
     TiXmlElement * pelement = this->getElement(TASK_XML_NAME, 0, true);
     return this->getElementText(pelement);
 }
-
+/*
 time_t TaskXml::getLastRunDate()
 {
     TiXmlElement * pelement = this->getElement(TASK_XML_LAST_RUN_DATE, 0, true);
@@ -62,16 +62,16 @@ void TaskXml::updateLastRunDate()
     sprintf(buffer,"%ld", wxDateTime::GetTimeNow());
     this->setElementText(pelement, buffer);
 }
-
+*/
 void TaskXml::commitData()
 {
     this->saveXmlFile();
 }
 
-const char* TaskXml::getTaskTimerType()
+size_t TaskXml::getTaskTimerType()
 {
     TiXmlElement * pelement = this->getElement(TASK_XML_TIMER, 0, true);
-    return this->getElementAttribute(pelement, TASK_XML_TIMER_TYPE);
+    return atoi(this->getElementAttribute(pelement, TASK_XML_TIMER_TYPE));
 }
 
 const char* TaskXml::getTaskTimerTime()

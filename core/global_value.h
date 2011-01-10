@@ -25,6 +25,7 @@ const char * const TASK_XML_TIMER_PARAM         = "timer/param";
 const size_t TASK_XML_PREFIX_LEN                = 5;
 const size_t TASK_XML_NAME_LEN                  = 5;
 
+//Task Timer Type
 const size_t TIMMER_INTERVAL                    = 1;
 const size_t TIMMER_SPECIFY                     = 2;
 const size_t TIMMER_DAILY_INTERVAL              = 3;

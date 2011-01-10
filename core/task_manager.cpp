@@ -73,6 +73,7 @@ void TaskManager::updateTaskList()
         {
             ptasklist->InsertItem(index, _("001"));
             ptasklist->SetItem(index, 1, wxString(m_taskarray->Item(index)->getTaskName(), wxConvUTF8));
+            ptasklist->SetItem(index, 2, wxDateTime(m_taskarray->Item(index)->getNextRunDate()).Format());
 
             switch(m_taskarray->Item(index)->getTaskStatus())
             {

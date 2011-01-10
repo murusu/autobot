@@ -20,6 +20,7 @@ class XmlBase
 
         bool setElementText(TiXmlElement *pElement, const char *pData);
         bool setElementAttribute(TiXmlElement *pElement, const char *pAttributeName, const char *pData);
+        bool setElementAttribute(TiXmlElement *pElement, const char *pAttributeName, int pData);
 
         bool init(const char *filename, const char *rootname = "datas");
         bool saveXmlFile();

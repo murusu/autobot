@@ -7,10 +7,11 @@ IMPLEMENT_DYNAMIC_CLASS(wxTaskEvent, wxNotifyEvent)
 
 BotTask::BotTask()
 {
-    m_logxml        = NULL;
-    m_taskxml       = NULL;
-    m_timer         = NULL;
-    m_taskstatus    = TASK_STOP;
+    m_logxml            = NULL;
+    m_taskxml           = NULL;
+    m_timer             = NULL;
+    m_taskstatus        = TASK_STOP;
+    m_activedatetime    = NULL;
 }
 
 BotTask::~BotTask()
@@ -32,6 +33,12 @@ BotTask::~BotTask()
         delete m_timer;
         m_timer = NULL;
     }
+
+    if(m_activedatetime)
+    {
+        delete m_activedatetime;
+        m_activedatetime = NULL;
+    }
 }
 
 bool BotTask::initBotTask(const char *pfilename)
@@ -45,6 +52,9 @@ bool BotTask::initBotTask(const char *pfilename)
     m_logxml->initLogXml(plogname.c_str());
 
     m_timer = new wxTimer(this);
+
+    m_activedatetime = new wxDateTime();
+    m_activedatetime->SetToCurrent();
 
     this->Connect(wxID_ANY, wxEVT_TIMER, wxTimerEventHandler(BotTask::OnTimer));
 
@@ -66,7 +76,7 @@ void BotTask::updateTimer()
     switch(m_taskxml->getTaskTimerType())
     {
         case TIMMER_INTERVAL:
-            m_timer->Start(wxAtoi(wxString(m_taskxml->getTaskTimerTime(), wxConvUTF8)) * 1000, true);
+            m_timer->Start(m_taskxml->getTaskTimerTime() * 1000, true);
             break;
 
         case TIMMER_SPECIFY:
@@ -89,7 +99,34 @@ size_t BotTask::getTaskStatus()
 
 time_t BotTask::getNextRunDate()
 {
-    return 200;
+    time_t nexttime = 0;
+
+    switch(m_taskxml->getTaskTimerType())
+    {
+        case TIMMER_INTERVAL:
+            nexttime = m_activedatetime->GetTicks() + m_taskxml->getTaskTimerTime();
+            break;
+
+        case TIMMER_SPECIFY:
+            nexttime = m_taskxml->getTaskTimerTime();
+            break;
+
+        case TIMMER_DAILY_INTERVAL:
+            nexttime = wxDateTime::Now().ResetTime().GetTicks() + m_taskxml->getTaskTimerTime();
+            if(nexttime < wxDateTime::Now().GetTicks()) nexttime = wxDateTime::Now().ResetTime().GetTicks() + m_taskxml->getTaskTimerTime() + 86400; // 86400 seconds per day
+            break;
+
+        case TIMMER_WEEKLY_INTERVAL:
+            break;
+
+        case TIMMER_MONTHLY_INTERVAL:
+            break;
+
+        case TIMMER_YEARLY_INTERVAL:
+            break;
+    }
+
+    return nexttime;
 }
 
 size_t BotTask::getTaskTimerType()
@@ -97,7 +134,7 @@ size_t BotTask::getTaskTimerType()
     return m_taskxml->getTaskTimerType();
 }
 
-const char* BotTask::getTaskTimerTime()
+size_t BotTask::getTaskTimerTime()
 {
     return m_taskxml->getTaskTimerTime();
 }
@@ -112,7 +149,7 @@ void BotTask::updateLastRunDate()
     //m_taskxml->updateLastRunDate();
 }
 
-void BotTask::setTaskTimerType(const char* ptype)
+void BotTask::setTaskTimerType(size_t ptype)
 {
     m_taskxml->setTaskTimerType(ptype);
 }

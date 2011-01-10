@@ -74,10 +74,10 @@ size_t TaskXml::getTaskTimerType()
     return atoi(this->getElementAttribute(pelement, TASK_XML_TIMER_TYPE));
 }
 
-const char* TaskXml::getTaskTimerTime()
+size_t TaskXml::getTaskTimerTime()
 {
     TiXmlElement * pelement = this->getElement(TASK_XML_TIMER, 0, true);
-    return this->getElementAttribute(pelement, TASK_XML_TIMER_TIME);
+    return atoi(this->getElementAttribute(pelement, TASK_XML_TIMER_TIME));
 }
 
 
@@ -87,10 +87,10 @@ void TaskXml::setTaskName(const char* pname)
     this->setElementText(pelement, pname);
 }
 
-void TaskXml::setTaskTimerType(const char* ptype)
+void TaskXml::setTaskTimerType(size_t ptimetype)
 {
     TiXmlElement * pelement = this->getElement(TASK_XML_TIMER, 0, true);
-    this->setElementAttribute(pelement, TASK_XML_TIMER_TYPE, ptype);
+    this->setElementAttribute(pelement, TASK_XML_TIMER_TYPE, ptimetype);
 }
 
 void TaskXml::setTaskTimerTime(const char* ptime)

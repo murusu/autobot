@@ -11,10 +11,11 @@
 class BotTask : public wxEvtHandler
 {
     private:
-        TaskXml* m_taskxml;
-        LogXml*  m_logxml;
-        wxTimer* m_timer;
-        size_t   m_taskstatus;
+        TaskXml*    m_taskxml;
+        LogXml*     m_logxml;
+        wxTimer*    m_timer;
+        size_t      m_taskstatus;
+        wxDateTime* m_activedatetime;
 
     protected:
         void OnTimer(wxTimerEvent& event);
@@ -29,14 +30,17 @@ class BotTask : public wxEvtHandler
         void commitData();
 
         const char* getTaskName();
-        size_t getTaskStatus();
-        time_t getNextRunDate();
-        size_t getTaskTimerType();
-        const char* getTaskTimerTime();
-
         void setTaskName(const char* pname);
+
+        size_t getTaskStatus();
+
+        time_t getNextRunDate();
         void updateLastRunDate();
-        void setTaskTimerType(const char* ptype);
+
+        size_t getTaskTimerType();
+        void setTaskTimerType(size_t ptype);
+
+        size_t getTaskTimerTime();
         void setTaskTimerTime(const char* ptime);
 };
 

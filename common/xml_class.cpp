@@ -212,6 +212,14 @@ bool XmlBase::setElementAttribute(TiXmlElement *pElement, const char *pAttribute
     return true;
 }
 
+bool XmlBase::setElementAttribute(TiXmlElement *pElement, const char *pAttributeName, int pData)
+{
+    if(!pElement) return false;
+    pElement->SetAttribute(pAttributeName, pData);
+
+    return true;
+}
+
 bool XmlBase::saveXmlFile()
 {
     if(!m_xmldoc) return false;

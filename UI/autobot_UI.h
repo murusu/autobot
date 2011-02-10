@@ -13,12 +13,37 @@ class AutoBotMainFrame : public AutoBotMainFrameBase
 
     protected:
         void OnCloseFrame(wxCloseEvent& event);
+        void OnExit(wxCommandEvent& event);
+        void OnNewTask(wxCommandEvent& event);
+        void OnEditTask(wxCommandEvent& event);
+		void OnDeleteTask(wxCommandEvent& event);
 
 	public:
 		AutoBotMainFrame(wxFrame *frame);
 		~AutoBotMainFrame();
 
 		wxListCtrl* getTaskListCtrl();
+};
+
+class DialogTaskConfig : public DialogTaskConfigBase
+{
+	private:
+        size_t m_index;
+
+	public:
+		DialogTaskConfig(wxFrame* frame, size_t item_index);
+		~DialogTaskConfig();
+
+		bool initDialog();
+		void OnChangeActionType(wxCommandEvent& event);
+		void OnAddAction(wxCommandEvent& event);
+};
+
+class DialogActionConfig : public DialogActionConfigBase
+{
+	public:
+		DialogActionConfig(wxDialog* dialg);
+		~DialogActionConfig();
 };
 
 #endif // AUTOBOT_UI_H_INCLUDED

@@ -9,7 +9,7 @@ TaskManager::TaskManager()
 
 TaskManager::~TaskManager()
 {
-    if(!m_taskarray)
+    if(m_taskarray)
     {
         size_t tasknum = m_taskarray->GetCount();
 
@@ -71,30 +71,31 @@ void TaskManager::updateTaskList()
 
         for(size_t index = 0; index < tasknum; index++)
         {
-            ptasklist->InsertItem(index, _("001"));
-            ptasklist->SetItem(index, 1, wxString(m_taskarray->Item(index)->getTaskName(), wxConvUTF8));
-            ptasklist->SetItem(index, 2, wxDateTime(m_taskarray->Item(index)->getNextRunDate()).Format());
+            //ptasklist->InsertItem(index, wxString::Format("%d", index));
+            //ptasklist->SetItemData(index, index);
+            ptasklist->InsertItem(index, wxString(m_taskarray->Item(index)->getTaskName(), wxConvUTF8));
+            ptasklist->SetItem(index, 1, wxDateTime(m_taskarray->Item(index)->getNextRunDate()).Format());
 
             switch(m_taskarray->Item(index)->getTaskStatus())
             {
                 case TASK_WAITFORRUNING:
-                    ptasklist->SetItem(index, 3, _("waiting"));
+                    ptasklist->SetItem(index, 2, _("waiting"));
                     break;
 
                 case TASK_RUNNING:
-                    ptasklist->SetItem(index, 3, _("running"));
+                    ptasklist->SetItem(index, 2, _("running"));
                     break;
 
                 case TASK_STOP:
-                    ptasklist->SetItem(index, 3, _("stop"));
+                    ptasklist->SetItem(index, 2, _("stop"));
                     break;
 
                 case TASK_WAITFORRETRY:
-                    ptasklist->SetItem(index, 3, _("waiting for retry"));
+                    ptasklist->SetItem(index, 2, _("waiting for retry"));
                     break;
 
                 default:
-                    ptasklist->SetItem(index, 3, _("unknown"));
+                    ptasklist->SetItem(index, 2, _("unknown"));
                     break;
             }
         }

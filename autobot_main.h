@@ -9,6 +9,7 @@
 #include "UI/autobot_UI.h"
 
 class AutoBotMainFrame;
+class TaskManager;
 
 // Define a new application
 class AutoBotApp: public wxApp
@@ -17,6 +18,7 @@ class AutoBotApp: public wxApp
         wxSingleInstanceChecker *m_checker;
         wxLocale                *m_locale;
         AutoBotMainFrame        *m_appui;
+        TaskManager             *m_taskManager;
 
     public:
         bool    OnInit(void);
@@ -24,6 +26,7 @@ class AutoBotApp: public wxApp
         void    SetupLocale();
 
         AutoBotMainFrame* getMainUI();
+        TaskManager*      getTaskManager();
 };
 
 DECLARE_APP(AutoBotApp)

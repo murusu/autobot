@@ -31,7 +31,6 @@ const size_t TIMMER_SPECIFY                     = 2;
 const size_t TIMMER_DAILY_INTERVAL              = 3;
 const size_t TIMMER_WEEKLY_INTERVAL             = 4;
 const size_t TIMMER_MONTHLY_INTERVAL            = 5;
-const size_t TIMMER_YEARLY_INTERVAL             = 6;
 
 const size_t TASK_WAITFORRUNING                 = 1;
 const size_t TASK_RUNNING                       = 2;

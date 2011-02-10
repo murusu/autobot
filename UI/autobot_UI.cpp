@@ -28,7 +28,110 @@ void AutoBotMainFrame::OnCloseFrame( wxCloseEvent& event )
     event.Veto();
 }
 
+void AutoBotMainFrame::OnExit(wxCommandEvent& event)
+{
+    this->Destroy();
+}
+
+void AutoBotMainFrame::OnNewTask(wxCommandEvent& event)
+{
+    DialogTaskConfig *task_dlg = new DialogTaskConfig(this, -1);
+    task_dlg->initDialog();
+    task_dlg->ShowModal();
+    task_dlg->Destroy();
+}
+
+void AutoBotMainFrame::OnEditTask(wxCommandEvent& event)
+{
+    long select_item = m_listCtrl_tasks->GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
+
+    if (select_item != -1)
+    {
+
+    }
+}
+
+void AutoBotMainFrame::OnDeleteTask(wxCommandEvent& event)
+{
+    long select_item = m_listCtrl_tasks->GetNextItem(-1, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
+
+    if (select_item != -1)
+    {
+
+    }
+}
+
 wxListCtrl* AutoBotMainFrame::getTaskListCtrl()
 {
     return m_listCtrl_tasks;
 }
+
+DialogTaskConfig::DialogTaskConfig(wxFrame *frame, size_t item_index) : DialogTaskConfigBase(frame)
+{
+    m_index = item_index;
+}
+
+DialogTaskConfig::~DialogTaskConfig()
+{
+}
+
+bool DialogTaskConfig::initDialog()
+{
+    return true;
+}
+
+void DialogTaskConfig::OnChangeActionType(wxCommandEvent& event)
+{
+    m_panel_baseinterval->Show(false);
+    m_panel_baseonce->Show(false);
+    m_panel_basedaliy->Show(false);
+    m_panel_baseweekly->Show(false);
+    m_panel_basemonthly->Show(false);
+
+    size_t choice_selection = m_choiceTaskType->GetCurrentSelection() + 1;
+
+    switch(choice_selection)
+    {
+        case TIMMER_INTERVAL:
+            m_panel_baseinterval->Show(true);
+
+            break;
+
+        case TIMMER_SPECIFY:
+            m_panel_baseonce->Show(true);
+            break;
+
+        case TIMMER_DAILY_INTERVAL:
+            m_panel_basedaliy->Show(true);
+            break;
+
+        case TIMMER_WEEKLY_INTERVAL:
+            m_panel_baseweekly->Show(true);
+            break;
+
+        case TIMMER_MONTHLY_INTERVAL:
+            m_panel_basemonthly->Show(true);
+            break;
+
+        default:
+            m_panel_baseinterval->Show(true);
+            break;
+    }
+}
+
+void DialogTaskConfig::OnAddAction(wxCommandEvent& event)
+{
+    DialogActionConfig *action_dlg = new DialogActionConfig(this);
+    //action_dlg->initDialog();
+    action_dlg->ShowModal();
+    action_dlg->Destroy();
+}
+
+DialogActionConfig::DialogActionConfig(wxDialog *dialg) : DialogActionConfigBase(dialg)
+{
+}
+
+DialogActionConfig::~DialogActionConfig()
+{
+}
+

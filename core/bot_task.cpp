@@ -113,16 +113,13 @@ time_t BotTask::getNextRunDate()
 
         case TIMMER_DAILY_INTERVAL:
             nexttime = wxDateTime::Now().ResetTime().GetTicks() + m_taskxml->getTaskTimerTime();
-            if(nexttime < wxDateTime::Now().GetTicks()) nexttime = wxDateTime::Now().ResetTime().GetTicks() + m_taskxml->getTaskTimerTime() + 86400; // 86400 seconds per day
+            if(nexttime < wxDateTime::Now().GetTicks()) nexttime = nexttime + 86400; // 86400 seconds per day
             break;
 
         case TIMMER_WEEKLY_INTERVAL:
             break;
 
         case TIMMER_MONTHLY_INTERVAL:
-            break;
-
-        case TIMMER_YEARLY_INTERVAL:
             break;
     }
 

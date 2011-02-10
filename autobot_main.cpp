@@ -8,17 +8,17 @@ IMPLEMENT_APP(AutoBotApp)
 
 bool AutoBotApp::OnInit(void)
 {
-    m_checker   = NULL;
-    m_locale    = NULL;
-    m_appui     = NULL;
+    m_checker       = NULL;
+    m_locale        = NULL;
+    m_appui         = NULL;
+    m_taskManager   = NULL;
 
     const wxString name = wxString::Format(_("AutoBotApp-%s"), wxGetUserId().c_str());
     m_checker = new wxSingleInstanceChecker(name);
 
-    if ( m_checker->IsAnotherRunning() )
+    if( m_checker->IsAnotherRunning() )
     {
         wxLogError(_("Another program instance is already running, aborting."));
-
         return false;
     }
 
@@ -27,12 +27,15 @@ bool AutoBotApp::OnInit(void)
     m_appui = new AutoBotMainFrame(NULL);
     m_appui->Show(false);
 
-    TaskManager* ptaskManager;
-    ptaskManager = new TaskManager();
-    ptaskManager->initTaskManager();
+    m_taskManager = new TaskManager();
 
-    ptaskManager->updateTaskList();
+    if( !m_taskManager->initTaskManager() )
+    {
+        wxLogError(_("Initialization fail, aborting."));
+        return false;
+    }
 
+    m_taskManager->updateTaskList();
     return true;
 }
 
@@ -40,6 +43,7 @@ int AutoBotApp::OnExit()
 {
     if(m_checker)   delete m_checker;
     if(m_locale)    delete m_locale;
+    if(m_taskManager) delete m_taskManager;
     return 0;
 }
 
@@ -57,6 +61,11 @@ void AutoBotApp::SetupLocale()
 AutoBotMainFrame* AutoBotApp::getMainUI()
 {
     return m_appui;
+}
+
+TaskManager* AutoBotApp::getTaskManager()
+{
+    return m_taskManager;
 }
 
 //#include <dir.h>

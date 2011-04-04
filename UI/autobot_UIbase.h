@@ -34,6 +34,7 @@
 #include <wx/button.h>
 #include <wx/notebook.h>
 #include <wx/dialog.h>
+#include <wx/filepicker.h>
 
 ///////////////////////////////////////////////////////////////////////////
 
@@ -41,8 +42,7 @@
 #define wxID_menuItem_addtask 1001
 #define wxID_menuItem_edittask 1002
 #define wxID_menuItem_deltask 1003
-#define wxID_choiceTaskType 1004
-#define wxID_button_addaction 1005
+#define wxID_button_addaction 1004
 
 ///////////////////////////////////////////////////////////////////////////////
 /// Class AutoBotMainFrameBase
@@ -70,7 +70,7 @@ class AutoBotMainFrameBase : public wxFrame
 	
 	public:
 		
-		AutoBotMainFrameBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Auto Bot"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 600,400 ), long style = wxCAPTION|wxCLOSE_BOX|wxSYSTEM_MENU|wxTAB_TRAVERSAL );
+		AutoBotMainFrameBase( wxWindow* parent, wxWindowID id = wxID_ANY, const wxString& title = _("Auto Bot"), const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxSize( 600,400 ), long style = wxCAPTION|wxCLOSE_BOX|wxMINIMIZE_BOX|wxSYSTEM_MENU|wxTAB_TRAVERSAL );
 		~AutoBotMainFrameBase();
 	
 };
@@ -88,7 +88,7 @@ class DialogTaskConfigBase : public wxDialog
 		wxStaticText* m_staticText1;
 		wxTextCtrl* m_textCtrl1;
 		wxStaticText* m_staticText2;
-		wxChoice* m_choiceTaskType;
+		wxChoice* m_choiceTimeType;
 		wxPanel* m_panel9;
 		wxPanel* m_panel_baseinterval;
 		wxStaticText* m_staticText3;
@@ -172,10 +172,12 @@ class DialogTaskConfigBase : public wxDialog
 		wxListCtrl* m_listCtrl2;
 		wxPanel* m_panel_taskother;
 		wxButton* m_button_tasksave;
+		wxButton* m_button_taskcancel;
 		
 		// Virtual event handlers, overide them in your derived class
-		virtual void OnChangeActionType( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnChangeTimeType( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnAddAction( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnCloseTaskDialog( wxCommandEvent& event ) { event.Skip(); }
 		
 	
 	public:
@@ -194,9 +196,26 @@ class DialogActionConfigBase : public wxDialog
 	
 	protected:
 		wxNotebook* m_notebook_actionconfig;
-		wxPanel* m_panel_condition;
 		wxPanel* m_panel_execution;
+		wxStaticText* m_staticText20;
+		wxChoice* m_choiceActionType;
+		wxPanel* m_panel16;
+		wxPanel* m_panel_actionhttp;
+		wxStaticText* m_staticText21;
+		wxTextCtrl* m_textCtrl2;
+		wxStaticText* m_staticText22;
+		wxTextCtrl* m_textCtrl3;
+		wxPanel* m_panel_actionrunprogram;
+		wxStaticText* m_staticText23;
+		wxFilePickerCtrl* m_filePicker_runpath;
+		wxPanel* m_panel_condition;
 		wxButton* m_button_actionsave;
+		wxButton* m_button_actioncancel;
+		
+		// Virtual event handlers, overide them in your derived class
+		virtual void OnChangeActionType( wxCommandEvent& event ) { event.Skip(); }
+		virtual void OnCloseActionDialog( wxCommandEvent& event ) { event.Skip(); }
+		
 	
 	public:
 		

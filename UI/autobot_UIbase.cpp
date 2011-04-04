@@ -148,11 +148,11 @@ DialogTaskConfigBase::DialogTaskConfigBase( wxWindow* parent, wxWindowID id, con
 	m_staticText2->Wrap( -1 );
 	bSizer13->Add( m_staticText2, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	
-	wxString m_choiceTaskTypeChoices[] = { _("Interval"), _("Once"), _("Daily"), _("Weekly"), _("Monthly") };
-	int m_choiceTaskTypeNChoices = sizeof( m_choiceTaskTypeChoices ) / sizeof( wxString );
-	m_choiceTaskType = new wxChoice( m_panel_taskbase, wxID_choiceTaskType, wxDefaultPosition, wxSize( 150,-1 ), m_choiceTaskTypeNChoices, m_choiceTaskTypeChoices, 0 );
-	m_choiceTaskType->SetSelection( 0 );
-	bSizer13->Add( m_choiceTaskType, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+	wxString m_choiceTimeTypeChoices[] = { _("Interval"), _("Once"), _("Daily"), _("Weekly"), _("Monthly") };
+	int m_choiceTimeTypeNChoices = sizeof( m_choiceTimeTypeChoices ) / sizeof( wxString );
+	m_choiceTimeType = new wxChoice( m_panel_taskbase, wxID_ANY, wxDefaultPosition, wxSize( 150,-1 ), m_choiceTimeTypeNChoices, m_choiceTimeTypeChoices, 0 );
+	m_choiceTimeType->SetSelection( 0 );
+	bSizer13->Add( m_choiceTimeType, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
 	
 	bSizer9->Add( bSizer13, 1, wxEXPAND|wxLEFT, 5 );
 	
@@ -508,7 +508,7 @@ DialogTaskConfigBase::DialogTaskConfigBase( wxWindow* parent, wxWindowID id, con
 	m_panel_taskbase->SetSizer( bSizer8 );
 	m_panel_taskbase->Layout();
 	bSizer8->Fit( m_panel_taskbase );
-	m_notebook_taskconfig->AddPage( m_panel_taskbase, _("Base"), false );
+	m_notebook_taskconfig->AddPage( m_panel_taskbase, _("Base"), true );
 	m_panel_taskaction = new wxPanel( m_notebook_taskconfig, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
 	wxBoxSizer* bSizer24;
 	bSizer24 = new wxBoxSizer( wxVERTICAL );
@@ -543,7 +543,7 @@ DialogTaskConfigBase::DialogTaskConfigBase( wxWindow* parent, wxWindowID id, con
 	m_panel_taskaction->SetSizer( bSizer24 );
 	m_panel_taskaction->Layout();
 	bSizer24->Fit( m_panel_taskaction );
-	m_notebook_taskconfig->AddPage( m_panel_taskaction, _("Actions"), true );
+	m_notebook_taskconfig->AddPage( m_panel_taskaction, _("Actions"), false );
 	m_panel_taskother = new wxPanel( m_notebook_taskconfig, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
 	m_notebook_taskconfig->AddPage( m_panel_taskother, _("Others"), false );
 	
@@ -552,12 +552,15 @@ DialogTaskConfigBase::DialogTaskConfigBase( wxWindow* parent, wxWindowID id, con
 	bSizer2->Add( bSizer3, 10, wxEXPAND, 5 );
 	
 	wxBoxSizer* bSizer4;
-	bSizer4 = new wxBoxSizer( wxVERTICAL );
+	bSizer4 = new wxBoxSizer( wxHORIZONTAL );
 	
 	m_button_tasksave = new wxButton( this, wxID_ANY, _("Save"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer4->Add( m_button_tasksave, 0, wxALIGN_RIGHT|wxALL, 5 );
 	
-	bSizer2->Add( bSizer4, 1, wxEXPAND, 5 );
+	m_button_taskcancel = new wxButton( this, wxID_ANY, _("Cancel"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer4->Add( m_button_taskcancel, 0, wxALL, 5 );
+	
+	bSizer2->Add( bSizer4, 1, wxALIGN_RIGHT, 5 );
 	
 	this->SetSizer( bSizer2 );
 	this->Layout();
@@ -565,15 +568,17 @@ DialogTaskConfigBase::DialogTaskConfigBase( wxWindow* parent, wxWindowID id, con
 	this->Centre( wxBOTH );
 	
 	// Connect Events
-	m_choiceTaskType->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( DialogTaskConfigBase::OnChangeActionType ), NULL, this );
+	m_choiceTimeType->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( DialogTaskConfigBase::OnChangeTimeType ), NULL, this );
 	m_button_addaction->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( DialogTaskConfigBase::OnAddAction ), NULL, this );
+	m_button_taskcancel->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( DialogTaskConfigBase::OnCloseTaskDialog ), NULL, this );
 }
 
 DialogTaskConfigBase::~DialogTaskConfigBase()
 {
 	// Disconnect Events
-	m_choiceTaskType->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( DialogTaskConfigBase::OnChangeActionType ), NULL, this );
+	m_choiceTimeType->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( DialogTaskConfigBase::OnChangeTimeType ), NULL, this );
 	m_button_addaction->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( DialogTaskConfigBase::OnAddAction ), NULL, this );
+	m_button_taskcancel->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( DialogTaskConfigBase::OnCloseTaskDialog ), NULL, this );
 	
 }
 
@@ -588,29 +593,131 @@ DialogActionConfigBase::DialogActionConfigBase( wxWindow* parent, wxWindowID id,
 	bSizer6 = new wxBoxSizer( wxVERTICAL );
 	
 	m_notebook_actionconfig = new wxNotebook( this, wxID_ANY, wxDefaultPosition, wxDefaultSize, 0 );
+	m_panel_execution = new wxPanel( m_notebook_actionconfig, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+	wxBoxSizer* bSizer30;
+	bSizer30 = new wxBoxSizer( wxVERTICAL );
+	
+	wxBoxSizer* bSizer31;
+	bSizer31 = new wxBoxSizer( wxHORIZONTAL );
+	
+	m_staticText20 = new wxStaticText( m_panel_execution, wxID_ANY, _("Action Type:"), wxDefaultPosition, wxDefaultSize, 0 );
+	m_staticText20->Wrap( -1 );
+	bSizer31->Add( m_staticText20, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+	
+	wxString m_choiceActionTypeChoices[] = { _("Http"), _("Run A Program") };
+	int m_choiceActionTypeNChoices = sizeof( m_choiceActionTypeChoices ) / sizeof( wxString );
+	m_choiceActionType = new wxChoice( m_panel_execution, wxID_ANY, wxDefaultPosition, wxDefaultSize, m_choiceActionTypeNChoices, m_choiceActionTypeChoices, 0 );
+	m_choiceActionType->SetSelection( 0 );
+	bSizer31->Add( m_choiceActionType, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+	
+	bSizer30->Add( bSizer31, 3, wxEXPAND, 5 );
+	
+	wxBoxSizer* bSizer32;
+	bSizer32 = new wxBoxSizer( wxVERTICAL );
+	
+	m_panel16 = new wxPanel( m_panel_execution, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+	wxBoxSizer* bSizer41;
+	bSizer41 = new wxBoxSizer( wxVERTICAL );
+	
+	m_panel_actionhttp = new wxPanel( m_panel16, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+	wxBoxSizer* bSizer33;
+	bSizer33 = new wxBoxSizer( wxVERTICAL );
+	
+	wxBoxSizer* bSizer36;
+	bSizer36 = new wxBoxSizer( wxHORIZONTAL );
+	
+	m_staticText21 = new wxStaticText( m_panel_actionhttp, wxID_ANY, _("URL:"), wxDefaultPosition, wxSize( 70,-1 ), 0 );
+	m_staticText21->Wrap( -1 );
+	bSizer36->Add( m_staticText21, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+	
+	m_textCtrl2 = new wxTextCtrl( m_panel_actionhttp, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 450,-1 ), 0 );
+	bSizer36->Add( m_textCtrl2, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+	
+	bSizer33->Add( bSizer36, 0, 0, 5 );
+	
+	wxBoxSizer* bSizer38;
+	bSizer38 = new wxBoxSizer( wxHORIZONTAL );
+	
+	m_staticText22 = new wxStaticText( m_panel_actionhttp, wxID_ANY, _("Post Data:"), wxDefaultPosition, wxSize( 70,-1 ), 0 );
+	m_staticText22->Wrap( -1 );
+	bSizer38->Add( m_staticText22, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+	
+	m_textCtrl3 = new wxTextCtrl( m_panel_actionhttp, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize( 450,-1 ), 0 );
+	bSizer38->Add( m_textCtrl3, 0, wxALL, 5 );
+	
+	bSizer33->Add( bSizer38, 0, 0, 5 );
+	
+	m_panel_actionhttp->SetSizer( bSizer33 );
+	m_panel_actionhttp->Layout();
+	bSizer33->Fit( m_panel_actionhttp );
+	bSizer41->Add( m_panel_actionhttp, 1, wxEXPAND, 0 );
+	
+	m_panel_actionrunprogram = new wxPanel( m_panel16, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
+	m_panel_actionrunprogram->Hide();
+	
+	wxBoxSizer* bSizer39;
+	bSizer39 = new wxBoxSizer( wxHORIZONTAL );
+	
+	wxBoxSizer* bSizer40;
+	bSizer40 = new wxBoxSizer( wxHORIZONTAL );
+	
+	m_staticText23 = new wxStaticText( m_panel_actionrunprogram, wxID_ANY, _("Path:"), wxDefaultPosition, wxSize( 70,-1 ), 0 );
+	m_staticText23->Wrap( -1 );
+	bSizer40->Add( m_staticText23, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+	
+	m_filePicker_runpath = new wxFilePickerCtrl( m_panel_actionrunprogram, wxID_ANY, wxEmptyString, _("Select a file"), wxT("*.*"), wxDefaultPosition, wxSize( -1,-1 ), wxFLP_DEFAULT_STYLE );
+	bSizer40->Add( m_filePicker_runpath, 0, wxALIGN_CENTER_VERTICAL|wxALL, 5 );
+	
+	bSizer39->Add( bSizer40, 1, 0, 5 );
+	
+	m_panel_actionrunprogram->SetSizer( bSizer39 );
+	m_panel_actionrunprogram->Layout();
+	bSizer39->Fit( m_panel_actionrunprogram );
+	bSizer41->Add( m_panel_actionrunprogram, 1, wxEXPAND, 0 );
+	
+	m_panel16->SetSizer( bSizer41 );
+	m_panel16->Layout();
+	bSizer41->Fit( m_panel16 );
+	bSizer32->Add( m_panel16, 1, wxEXPAND, 5 );
+	
+	bSizer30->Add( bSizer32, 18, wxALL|wxEXPAND, 0 );
+	
+	m_panel_execution->SetSizer( bSizer30 );
+	m_panel_execution->Layout();
+	bSizer30->Fit( m_panel_execution );
+	m_notebook_actionconfig->AddPage( m_panel_execution, _("Execution"), false );
 	m_panel_condition = new wxPanel( m_notebook_actionconfig, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
 	m_notebook_actionconfig->AddPage( m_panel_condition, _("Condition"), true );
-	m_panel_execution = new wxPanel( m_notebook_actionconfig, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
-	m_notebook_actionconfig->AddPage( m_panel_execution, _("Execution"), false );
 	
 	bSizer6->Add( m_notebook_actionconfig, 1, wxEXPAND | wxALL, 5 );
 	
 	bSizer5->Add( bSizer6, 10, wxEXPAND, 5 );
 	
 	wxBoxSizer* bSizer7;
-	bSizer7 = new wxBoxSizer( wxVERTICAL );
+	bSizer7 = new wxBoxSizer( wxHORIZONTAL );
 	
 	m_button_actionsave = new wxButton( this, wxID_ANY, _("Save"), wxDefaultPosition, wxDefaultSize, 0 );
 	bSizer7->Add( m_button_actionsave, 0, wxALIGN_RIGHT|wxALL, 5 );
 	
-	bSizer5->Add( bSizer7, 1, wxEXPAND, 5 );
+	m_button_actioncancel = new wxButton( this, wxID_ANY, _("Cancel"), wxDefaultPosition, wxDefaultSize, 0 );
+	bSizer7->Add( m_button_actioncancel, 0, wxALL, 5 );
+	
+	bSizer5->Add( bSizer7, 1, wxALIGN_RIGHT, 5 );
 	
 	this->SetSizer( bSizer5 );
 	this->Layout();
 	
 	this->Centre( wxBOTH );
+	
+	// Connect Events
+	m_choiceActionType->Connect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( DialogActionConfigBase::OnChangeActionType ), NULL, this );
+	m_button_actioncancel->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( DialogActionConfigBase::OnCloseActionDialog ), NULL, this );
 }
 
 DialogActionConfigBase::~DialogActionConfigBase()
 {
+	// Disconnect Events
+	m_choiceActionType->Disconnect( wxEVT_COMMAND_CHOICE_SELECTED, wxCommandEventHandler( DialogActionConfigBase::OnChangeActionType ), NULL, this );
+	m_button_actioncancel->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( DialogActionConfigBase::OnCloseActionDialog ), NULL, this );
+	
 }

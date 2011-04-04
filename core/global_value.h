@@ -37,5 +37,10 @@ const size_t TASK_RUNNING                       = 2;
 const size_t TASK_STOP                          = 3;
 const size_t TASK_WAITFORRETRY                  = 4;
 
+//Task ACtion Type
+const size_t ACTION_HTTP                        = 1;
+const size_t ACTION_RUN_PROGRAM                 = 2;
+
+
 
 #endif // GLOBAL_VALUE_H_INCLUDED

@@ -35,8 +35,9 @@ class DialogTaskConfig : public DialogTaskConfigBase
 		~DialogTaskConfig();
 
 		bool initDialog();
-		void OnChangeActionType(wxCommandEvent& event);
+		void OnChangeTimeType(wxCommandEvent& event);
 		void OnAddAction(wxCommandEvent& event);
+		void OnCloseTaskDialog(wxCommandEvent& event);
 };
 
 class DialogActionConfig : public DialogActionConfigBase
@@ -44,6 +45,9 @@ class DialogActionConfig : public DialogActionConfigBase
 	public:
 		DialogActionConfig(wxDialog* dialg);
 		~DialogActionConfig();
+
+		void OnChangeActionType(wxCommandEvent& event);
+		void OnCloseActionDialog(wxCommandEvent& event);
 };
 
 #endif // AUTOBOT_UI_H_INCLUDED

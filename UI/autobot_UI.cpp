@@ -80,7 +80,7 @@ bool DialogTaskConfig::initDialog()
     return true;
 }
 
-void DialogTaskConfig::OnChangeActionType(wxCommandEvent& event)
+void DialogTaskConfig::OnChangeTimeType(wxCommandEvent& event)
 {
     m_panel_baseinterval->Show(false);
     m_panel_baseonce->Show(false);
@@ -88,7 +88,7 @@ void DialogTaskConfig::OnChangeActionType(wxCommandEvent& event)
     m_panel_baseweekly->Show(false);
     m_panel_basemonthly->Show(false);
 
-    size_t choice_selection = m_choiceTaskType->GetCurrentSelection() + 1;
+    size_t choice_selection = m_choiceTimeType->GetCurrentSelection() + 1;
 
     switch(choice_selection)
     {
@@ -127,11 +127,46 @@ void DialogTaskConfig::OnAddAction(wxCommandEvent& event)
     action_dlg->Destroy();
 }
 
+void DialogTaskConfig::OnCloseTaskDialog(wxCommandEvent& event)
+{
+    this->Close();
+}
+
+
 DialogActionConfig::DialogActionConfig(wxDialog *dialg) : DialogActionConfigBase(dialg)
 {
 }
 
 DialogActionConfig::~DialogActionConfig()
 {
+}
+
+void DialogActionConfig::OnChangeActionType(wxCommandEvent& event)
+{
+    m_panel_actionhttp->Show(false);
+    m_panel_actionrunprogram->Show(false);
+
+    size_t choice_selection = m_choiceActionType->GetCurrentSelection() + 1;
+
+    switch(choice_selection)
+    {
+        case ACTION_HTTP:
+            m_panel_actionhttp->Show(true);
+
+            break;
+
+        case ACTION_RUN_PROGRAM:
+            m_panel_actionrunprogram->Show(true);
+            break;
+
+        default:
+            m_panel_actionhttp->Show(true);
+            break;
+    }
+}
+
+void DialogActionConfig::OnCloseActionDialog(wxCommandEvent& event)
+{
+    this->Close();
 }
 
